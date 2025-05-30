@@ -1,0 +1,231 @@
+<div class="page-wrapper">
+
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-md-12 col-lg-4">
+          <div class="mb-3">
+            <div class="card-body pt-0 text-center">
+              <div id="task" class="apex-charts"></div>
+              <h4 class="card-title my-2">Tasks Summary</h4>
+              <button type="button" class="btn btn-outline-primary px-3 mt-2">View Tasks</button>
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-md-12 col-lg-8">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+              <div class="card mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-24 text-danger fw-normal">38</span>
+                      <h6 class="text-uppercase fs-12 text-muted mt-2 m-0">Ongoing</h6>
+                    </div><!--end col-->
+                  </div> <!-- end row -->
+                </div><!--end card-body-->
+              </div> <!--end card-body-->
+            </div><!--end col-->
+            <div class="col-md-6 col-lg-4">
+              <div class="card mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-24 text-warning fw-normal">41</span>
+                      <h6 class="text-uppercase fs-12 text-muted mt-2 m-0">Process</h6>
+                    </div><!--end col-->
+                  </div> <!-- end row -->
+                </div><!--end card-body-->
+              </div> <!--end card-body-->
+            </div><!--end col-->
+            <div class="col-md-6 col-lg-4">
+              <div class="card mb-3 mb-lg-0">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                      <span class="fs-24 text-success fw-normal">40.8%</span>
+                      <h6 class="text-uppercase fs-12 text-muted mt-2 m-0">Complated</h6>
+                    </div><!--end col-->
+                  </div> <!-- end row -->
+                </div><!--end card-body-->
+              </div> <!--end card-->
+            </div><!--end col-->
+          </div><!--end row-->
+          <div class="p-3  border-info border-dashed bg-info-subtle  mt-3 rounded">
+            <div class="row d-flex justify-content-center">
+              <div class="col">
+                <div class=" ">
+                  <a href="#" class="fw-bold me-1">You've almost reached your goal</a> 75% of your
+                  goals are completed just complate 25% of remaining goals to achieve your target.
+                </div>
+                <div class="row mt-3">
+                  <div class="col col-md-12 col-lg-6 align-self-center">
+                    
+                  </div><!--end col-->
+                </div><!--end row-->
+
+              </div><!--end col-->
+              <div class="col-auto align-self-center">
+                <button type="button" class="btn btn-primary px-3 btn-sm mt-2">View All</button>
+              </div><!--end col-->
+            </div><!--end row-->
+          </div>
+        </div> <!--end col-->
+      </div><!--end row-->
+
+      <div class="row">
+        <div class="col-12 mt-3">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title">Assets & Details</h4>
+                </div><!--end col-->
+              </div> <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="accordion card-bg " id="task-1">
+                <div class="task-accordion rounded  border-dashed border-theme-color mb-3 p-2"
+                  *ngFor="let asset of assetList">
+                  <div class="cursor-pointer" (click)="toggleCollapse(asset)">
+                    <div class="table-responsive">
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                <i class="iconoir-calendar fs-2 me-2"></i>
+                                <div class="flex-grow-1 text-truncate">
+                                  <h5 class="m-0 mb-1">Asset Code</h5>
+                                  <div class="fw-semibold"> <span class="text-danger">{{asset.assetCode}}</span></div>
+                                </div><!--end media body-->
+                              </div>
+                            </td>
+                            <td class="text-start">
+                              <h5 class="m-0 mb-1">Asset name</h5>
+                              <span class="fs-13 fw-semibold">{{asset.name}}</span>
+                            </td>
+                            <td class="text-start">
+                              <h5 class="m-0 mb-1">Serial No.</h5>
+                              <span class="text-warning">{{asset.serialNumber}}</span>
+                            </td>
+
+                            <td class="text-start">
+                              <h5 class="m-0 mb-1">assetInstanceId</h5>
+                              <span class="text-secondary"> {{asset.assetInstanceId}} </span>
+                            </td>
+
+                            <td class="text-end">
+                              <h5 class="m-0 mb-1">Status</h5>
+                              <span class="badge rounded text-blue bg-transparent border border-blue p-1">
+                                {{asset.status}} </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div id="task-one" *ngIf="asset.isCollapsed" class="accordion-collapse collapse show "
+                    data-bs-parent="#task-1">
+                    <div class="accordion-body  bg-body border-dashed-top  p-3 p-3">
+                      <h5 class="">Asset Description</h5>
+                      <p class="mt-2 mb-3"> {{asset.description}} </p>
+                      <div class="row row-cols-auto">
+                        <div class="col col-md-3 mb-3">
+                          <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                              <h5 class="m-0 mb-1 ">Created By</h5>
+                              <p class="text-muted mb-0">{{asset.createdBy}}</p>
+                            </div>
+                          </div>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1">Brand</h5>
+                          <p class="text-muted mb-0">{{asset.brandId}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1 ">Model</h5>
+                          <p class="text-muted mb-0">{{asset.modelId}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1">Quantity</h5>
+                          <p class="text-muted mb-0">{{asset.quantity}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1 ">Business Vertical</h5>
+                          <p class="text-muted mb-0">{{asset.businessVerticalId}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1 ">Vendor</h5>
+                          <p class="text-muted mb-0">{{asset.vendorIds}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1 ">Bulk Asset</h5>
+                          <p class="text-muted mb-0">{{asset.bulkAsset ? 'yes' : 'No'}}</p>
+                        </div><!--end col-->
+                        <div class="col col-md-3 mb-3">
+                          <h5 class="m-0 mb-1 ">Warrenty</h5>
+                          <p class="text-muted mb-0">{{asset.warrantyId}}</p>
+                        </div><!--end col-->
+                      </div><!--end row-->
+                    </div><!--end accordion-body-->
+                  </div><!--end task-->
+                </div> <!--end -->
+
+              </div><!--end accordion-->
+            </div>
+          </div>
+        </div> <!-- end col -->
+      </div> <!-- end row -->
+    </div><!-- container -->
+
+    <!--Start Rightbar-->
+    <!--Start Rightbar/offcanvas-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+      <div class="offcanvas-header border-bottom justify-content-between">
+        <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+        <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h6>Account Settings</h6>
+        <div class="p-2 text-start mt-3">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="settings-switch1">
+            <label class="form-check-label" for="settings-switch1">Auto updates</label>
+          </div><!--end form-switch-->
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+            <label class="form-check-label" for="settings-switch2">Location Permission</label>
+          </div><!--end form-switch-->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="settings-switch3">
+            <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+          </div><!--end form-switch-->
+        </div><!--end /div-->
+        <h6>General Settings</h6>
+        <div class="p-2 text-start mt-3">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="settings-switch4">
+            <label class="form-check-label" for="settings-switch4">Show me Online</label>
+          </div><!--end form-switch-->
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+            <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+          </div><!--end form-switch-->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="settings-switch6">
+            <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+          </div><!--end form-switch-->
+        </div><!--end /div-->
+      </div><!--end offcanvas-body-->
+    </div>
+    <!--end Rightbar/offcanvas-->
+    <!--end Rightbar-->
+
+  </div>
+  <!-- end page content -->
+</div>
+
+<script src="assets/libs/apexcharts/apexcharts.min.js"></script>

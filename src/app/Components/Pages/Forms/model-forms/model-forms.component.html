@@ -1,0 +1,45 @@
+
+
+<form [formGroup]="model" (ngSubmit)="createModel()">
+    <mat-card>
+
+        <mat-card-header>
+            <h1>{{title}}</h1>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Select Brand</mat-label>
+                <mat-select formControlName="brandId">
+                    <mat-option class="add-option">
+                        <button mat-button color="primary" class="full-width">+ Create Brand</button>
+                    </mat-option>
+                    @for (list of brandList; track list) {
+                    <mat-option [value]="list.id">{{list.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Model Code</mat-label>
+                <input matInput formControlName="modelCode">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Model Name</mat-label>
+                <input matInput formControlName="modelName">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" placeholder="Ex. About Brand..."></textarea>
+              </mat-form-field>
+
+            <mat-card-actions>
+                <button class="sub-but" type="submit" mat-raised-button color="primary">Save</button>
+                <a mat-raised-button color="accent" (click)="closepopup()">Close</a>
+            </mat-card-actions>
+
+        </mat-card-content>
+
+    </mat-card>
+</form>

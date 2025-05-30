@@ -1,0 +1,655 @@
+<!-- <mat-card>
+    <mat-card-content>
+        <h2 class="example-h2">Asset Specification Master</h2>
+        <mat-tab-group class="demo-tab-group">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>appliance</mat-icon> Brands
+                </ng-template>
+                <div class="demo-tab-content">
+                    <div class="" style="margin-top: 2rem;">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Brands</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button mat-raised-button type="button" (click)="createBrand()"> <i
+                                        class="fa fa-plus"></i> Create Brand</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataBrandSource">
+
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onBrandEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <button class="sub-delete" (click)="onBrandDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedBrandColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedBrandColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #brandPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>build</mat-icon> Model
+                </ng-template>
+                <div class="demo-tab-content">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Models</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button mat-raised-button type="button" (click)="createModels()"> <i
+                                        class="fa fa-plus"></i> Create Model</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataModelSource">
+                                    <ng-container matColumnDef="modelCode">
+                                        <th mat-header-cell *matHeaderCellDef> Model Code </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.modelCode}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="modelName">
+                                        <th mat-header-cell *matHeaderCellDef> Model Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.modelName}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="brandName">
+                                        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.brandName}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onModelEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <button class="sub-delete" (click)="onModelDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedModelColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedModelColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #modelPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>business</mat-icon> Vendor Type
+                </ng-template>
+                <div class="demo-tab-content">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Vendor Type</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button mat-raised-button type="button" (click)="createVendor()"> <i
+                                        class="fa fa-plus"></i> Create Vendor Type</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataVendorsSource">
+
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Vendor Type Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onVendorEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <button class="sub-delete" (click)="onVendorDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedVendorsColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedVendorsColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #vendorPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>verified_user</mat-icon> Warranty
+                </ng-template>
+                <div class="demo-tab-content">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Warranty</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button mat-raised-button type="button" (click)="createWarranty()"> <i
+                                        class="fa fa-plus"></i> Create Warranty</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataWarrentySource">
+                                    <ng-container matColumnDef="active">
+                                        <th mat-header-cell *matHeaderCellDef>Status</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.active ? 'Active':'Inactive'}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="warrantyCode">
+                                        <th mat-header-cell *matHeaderCellDef> Warranty Code</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyCode}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyType">
+                                        <th mat-header-cell *matHeaderCellDef>Warranty Type</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyType}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="durationInMonths">
+                                        <th mat-header-cell *matHeaderCellDef>Duration(InMonths)</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.durationInMonths}} months</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="coverageDetails">
+                                        <th mat-header-cell *matHeaderCellDef>Coverage Details</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.coverageDetails}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyStartDate">
+                                        <th mat-header-cell *matHeaderCellDef>WarrantyStartDate</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyStartDate}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyEndDate">
+                                        <th mat-header-cell *matHeaderCellDef>WarrantyEndDate</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyEndDate}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onWarrentyEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <button class="sub-delete" (click)="onWarrentyDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedWarrentyColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedWarrentyColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #vendorPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>category</mat-icon> Asset Custom Field
+                </ng-template>
+                <div class="demo-tab-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                    In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                    feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                    orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                    <br />
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                    In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                    feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                    orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                </div>
+            </mat-tab>
+
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card> -->
+
+
+
+<div class="col-md-12 col-lg-12 p-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h4 class="card-title">Asset Specification</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body pt-0">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'Brand'" (click)="setActiveTab('Brand')"
+                        href="javascript:void(0)" [attr.aria-selected]="activeTab === 'Brand'" role="tab">Brand</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'Model'" (click)="setActiveTab('Model')"
+                        href="javascript:void(0)" [attr.aria-selected]="activeTab === 'Model'" role="tab">Model</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'Vendor'" (click)="setActiveTab('Vendor')"
+                        href="javascript:void(0)" [attr.aria-selected]="activeTab === 'Vendor'" role="tab">Vendor
+                        Type</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'Warranty'" (click)="setActiveTab('Warranty')"
+                        href="javascript:void(0)" [attr.aria-selected]="activeTab === 'Warranty'"
+                        role="tab">Warranty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'Custom'" (click)="setActiveTab('Custom')"
+                        href="javascript:void(0)" [attr.aria-selected]="activeTab === 'Custom'" role="tab">Custom
+                        Fields</a>
+                </li>
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content">
+                <div class="tab-pane p-3" [class.active]="activeTab === 'Brand'" [class.show]="activeTab === 'Brand'"
+                    id="Brand" role="tabpanel">
+
+                    <div class="" style="margin-top: 2rem;">
+                        <div class="row name">
+                            <div class="col-6">
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button type="button" class="btn btn-primary" (click)="createBrand()"><i
+                                        class="fa fa-plus"></i> Create Brand</button>
+                                
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataBrandSource">
+
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onBrandEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <!-- <button class="sub-delete" (click)="onBrandDelete(element.id)"><i
+                                            class="fa fa-trash"></i></button> -->
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedBrandColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedBrandColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #brandPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane p-3" [class.active]="activeTab === 'Model'" [class.show]="activeTab === 'Model'"
+                    id="Model" role="tabpanel">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Models</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button  type="button" class="btn btn-primary" (click)="createModels()"> <i
+                                        class="fa fa-plus"></i> Create Model</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataModelSource">
+                                    <ng-container matColumnDef="modelCode">
+                                        <th mat-header-cell *matHeaderCellDef> Model Code </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.modelCode}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="modelName">
+                                        <th mat-header-cell *matHeaderCellDef> Model Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.modelName}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="brandName">
+                                        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.brandName}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onModelEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <!-- <button class="sub-delete" (click)="onModelDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button> -->
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedModelColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedModelColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #modelPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane p-3" [class.active]="activeTab === 'Vendor'" [class.show]="activeTab === 'Vendor'"
+                    id="Vendor" role="tabpanel">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Vendor Type</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button class="btn btn-primary" type="button" (click)="createVendor()"> <i
+                                        class="fa fa-plus"></i> Create Vendor Type</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataVendorsSource">
+
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Vendor Type Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onVendorEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <!-- <button class="sub-delete" (click)="onVendorDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button> -->
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedVendorsColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedVendorsColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #vendorPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane p-3" [class.active]="activeTab === 'Warranty'"
+                    [class.show]="activeTab === 'Warranty'" id="Warranty" role="tabpanel">
+                    <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Warranty</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button class="btn btn-primary" type="button" (click)="createWarranty()"> <i
+                                        class="fa fa-plus"></i> Create Warranty</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataWarrentySource">
+                                    <ng-container matColumnDef="active">
+                                        <th mat-header-cell *matHeaderCellDef>Status</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.active ? 'Active':'Inactive'}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="warrantyCode">
+                                        <th mat-header-cell *matHeaderCellDef> Warranty Code</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyCode}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyType">
+                                        <th mat-header-cell *matHeaderCellDef>Warranty Type</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyType}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="durationInMonths">
+                                        <th mat-header-cell *matHeaderCellDef>Duration(InMonths)</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.durationInMonths}} months</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="coverageDetails">
+                                        <th mat-header-cell *matHeaderCellDef>Coverage Details</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.coverageDetails}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyStartDate">
+                                        <th mat-header-cell *matHeaderCellDef>WarrantyStartDate</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyStartDate}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="warrantyEndDate">
+                                        <th mat-header-cell *matHeaderCellDef>WarrantyEndDate</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.warrantyEndDate}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onWarrentyEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <!-- <button class="sub-delete" (click)="onWarrentyDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button> -->
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedWarrentyColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedWarrentyColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #warrentyPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane p-3" [class.active]="activeTab === 'Custom'" [class.show]="activeTab === 'Custom'"
+                    id="Custom" role="tabpanel">
+                     <div class="">
+                        <div class="row name">
+                            <div class="col-6">
+                                <div class="col-12">
+                                    <h1 style="margin: 0;">Custom Fields</h1>
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 but-name">
+                                <button class="btn btn-primary" type="button" (click)="createCustomField()"> <i
+                                        class="fa fa-plus"></i> Create Custom Fields</button>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataCustomFieldSource">
+                                    <ng-container matColumnDef="fieldName">
+                                        <th mat-header-cell *matHeaderCellDef>fieldName</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.fieldName}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="fieldType">
+                                        <th mat-header-cell *matHeaderCellDef>fieldType</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.fieldType}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="FieldValue">
+                                        <th mat-header-cell *matHeaderCellDef>FieldValue</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.fieldValue}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="AssetInstance">
+                                        <th mat-header-cell *matHeaderCellDef>AssetInstance</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.assetInstanceId}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="createdBy">
+                                        <th mat-header-cell *matHeaderCellDef> Created By </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button class="sub-edit" (click)="onWarrentyEdit(element.id)"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <!-- <button class="sub-delete" (click)="onWarrentyDelete(element.id)"><i
+                                                    class="fa fa-trash"></i></button> -->
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedCustonFieldColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedCustonFieldColumns;"></tr>
+                                </table>
+
+                                <mat-paginator #customField [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                    aria-label="Select page of periodic elements"></mat-paginator>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

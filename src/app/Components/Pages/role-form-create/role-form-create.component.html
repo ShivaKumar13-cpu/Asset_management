@@ -1,0 +1,64 @@
+<!-- <div class="row justify-content-center"> -->
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h4 class="card-title">{{title}}</h4>
+                </div><!--end col-->
+            </div> <!--end row-->
+        </div><!--end card-header-->
+        <div class="card-body pt-0">
+            <form [formGroup]="role" (ngSubmit)="saveRole()">
+
+                <div class="mb-3" *ngIf="divisionUser && !isEdit">
+                    <label class="form-label">User Level Type</label>
+                    <div class="col-sm-12">
+                        <select class="form-select" aria-label="Default select example" formControlName="userLevelType" (change)="onUserLevel($event)">
+                            <option value="" disabled>Select User Level Type</option>
+                            <option value="BUSINESS_DIVISION">BUSINESS DIVISION</option>
+                            <option value="BUSINESS_VERTICAL">BUSINESS VERTICAL</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3" *ngIf="divisionUser && !isEdit && selectedType == 'BUSINESS_VERTICAL'" >
+                    <label class="form-label">Business Vertical</label>
+                    <div class="col-sm-12">
+                        <select class="form-select" [(ngModel)]="selectedBvId" aria-label="Default select example" (change)="onChangeBv($event)">
+                            <option value="" disabled>Select a business vertical</option>
+                            <option *ngFor="let bv of bvList" [value]="bv.id">
+                                {{ bv.name }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Department</label>
+                    <div class="col-sm-12">
+                        <select class="form-select" aria-label="Default select example" formControlName="departmentId">
+                            <option value="" disabled selected>Select Department</option>
+                            <option *ngFor="let dept of departmentList" [value]="dept.id">
+                                {{ dept.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Role Name</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="name"
+                        aria-describedby="emailHelp" placeholder="Enter role name">
+                    <small id="emailHelp" class="form-text text-muted">Please ensure the role name is
+                        relevant.</small>
+                </div>
+                <div class="cont-but">
+                    <button type="submit" class="btn btn-primary m-r-1 button-alternate">Submit</button>
+                    <button type="button" (click)="closepopup()" class="btn btn-danger button-alternate">Cancel</button>
+                </div>
+
+            </form>
+        </div><!--end card-body-->
+    </div><!--end card-->
+
+<!-- </div>end row -->

@@ -1,0 +1,46 @@
+<form [formGroup]="equipment" (ngSubmit)="createEquip()">
+    <mat-card>
+
+        <mat-card-header>
+            <h1>{{title}}</h1>
+        </mat-card-header>
+
+        <mat-card-content>
+
+
+            <mat-form-field appearance="outline" *ngIf="multi">
+                <mat-label>Select Business vertical</mat-label>
+                <mat-select formControlName="businessVerticalId" (selectionChange)="onSelectBv($event)">
+                    <mat-option class="add-option">
+                        <button mat-button color="primary" class="full-width">+ Create New Business Vertical</button>
+                    </mat-option>
+                    @for (list of bvNameList; track list) {
+                    <mat-option [value]="list.id">{{list.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Select Asset Varient</mat-label>
+                <mat-select formControlName="assetVariantId">
+                    <mat-option class="add-option">
+                        <button mat-button color="primary" class="full-width">+ Create New Business Vertical</button>
+                    </mat-option>
+                    @for (list of assetVarientList; track list) {
+                    <mat-option [value]="list.id">{{list.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Equipment Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button class="sub-but" type="submit" mat-raised-button color="primary">Save</button>
+                <a mat-raised-button color="accent" (click)="closePopUp()">Close</a>
+            </mat-card-actions>
+
+        </mat-card-content>
+
+    </mat-card>
+</form>

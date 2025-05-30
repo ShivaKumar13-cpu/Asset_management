@@ -1,0 +1,25 @@
+.padding-2 {
+    padding: 0 2rem !important;
+}
+
+.p-2 {
+    padding: 1.5rem 2rem !important;
+}
+
+label,
+input,
+select,
+textarea {
+    font-size: 0.812rem;
+
+}
+
+input::placeholder {
+    font-size: 0.812rem;
+}
+
+input,
+select,
+textarea {
+    color: black;
+}

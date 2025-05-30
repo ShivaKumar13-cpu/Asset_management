@@ -1,0 +1,52 @@
+<form [formGroup]="warranty" (ngSubmit)="createWarranty()">
+    <mat-card>
+
+        <mat-card-header>
+            <h1>{{title}}</h1>
+        </mat-card-header>
+
+        <mat-card-content>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Warranty Code</mat-label>
+                <input matInput formControlName="warrantyCode">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Warranty Type</mat-label>
+                <input matInput formControlName="warrantyType">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Duration(in months)</mat-label>
+                <input matInput formControlName="durationInMonths">
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Enter warranty start and end date</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" formControlName="warrantyStartDate">
+                    <input matEndDate placeholder="End date" formControlName="warrantyEndDate">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field> -->
+            <mat-form-field appearance="outline">
+                <mat-label>Warranty start date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="warrantyStartDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label>Coverage Details</mat-label>
+                <textarea matInput formControlName="coverageDetails" placeholder="Ex. About coverage..."></textarea>
+            </mat-form-field>
+            <mat-card-actions>
+                <button class="sub-but" type="submit" mat-raised-button color="primary">Save</button>
+                <a mat-raised-button color="accent" (click)="closepopup()">Close</a>
+            </mat-card-actions>
+
+        </mat-card-content>
+
+    </mat-card>
+</form>

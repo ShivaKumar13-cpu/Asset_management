@@ -1,0 +1,11 @@
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-header
+[collapsed]="isSideNavCollapsed"
+[screenwidth]="screenwidth"
+(selectionChanged)="onHeaderSelectionChanged($event)"
+></app-header>
+<app-body 
+[collapsed]="isSideNavCollapsed"
+[screenWidth]="screenwidth"
+[selectedOption]="selectedOption"
+></app-body>

@@ -1,0 +1,180 @@
+<div class="padding-2">
+    <form>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2>Create Vendor</h2>
+                            </div><!--end col-->
+                        </div> <!--end row-->
+                    </div><!--end card-header-->
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3 row">
+                                    <label for="example-text-input"
+                                        class="col-sm-2 col-form-label text-end">Code</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="example-text-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-email-input"
+                                        class="col-sm-2 col-form-label text-end">Name</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="email" id="example-email-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row has-warning">
+                                    <label for="inputHorizontalWarning"
+                                        class="col-sm-2 col-form-label text-end">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control form-control-warning"
+                                            id="inputHorizontalWarning" placeholder="name@example.com"> 
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-tel-input"
+                                        class="col-sm-2 col-form-label text-end">Mobile</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="tel"
+                                            placeholder="enter the vendor mobile number" id="example-tel-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Vendor Type</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            @for (item of _vendorTypeList; track $index) {
+                                            <option  [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-search-input"
+                                        class="col-sm-2 col-form-label text-end">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                    </div>
+                                </div>
+
+                            </div><!--end col-->
+
+
+                            <div class="col-lg-6">
+                                <div class="mb-3 row">
+                                    <label for="example-search-input"
+                                        class="col-sm-2 col-form-label text-end">Address</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="example-url-input" class="col-sm-2 col-form-label text-end">City</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="example-url-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-url-input"
+                                        class="col-sm-2 col-form-label text-end">State</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="example-url-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-url-input"
+                                        class="col-sm-2 col-form-label text-end">Country</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="example-url-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-url-input" class="col-sm-2 col-form-label text-end">Pin
+                                        Code</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="example-url-input">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="p-2">
+                                <div class="border-top"></div>
+                            </div>
+                            <div class="col-12">
+                                <h2>Contact Person</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3 row">
+                                    <label for="example-email-input"
+                                        class="col-sm-2 col-form-label text-end">Name</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="email" id="example-email-input">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-6">
+                                <div class="mb-3 row">
+                                    <label for="example-tel-input"
+                                        class="col-sm-2 col-form-label text-end">Mobile</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="tel"
+                                            placeholder="enter the vendor mobile number" id="example-tel-input">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="p-2">
+                                <div class="border-top"></div>
+                            </div>
+                                
+                            <div class="col-lg-6">
+                                <h2>Billing detail</h2>
+                               <div class="mb-3 row has-warning">
+                                    <label for="inputHorizontalWarning"
+                                        class="col-sm-2 col-form-label text-end">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control form-control-warning"
+                                            id="inputHorizontalWarning" placeholder="name@example.com">
+                                        
+                                    </div>
+                                </div>
+                                 <div class="mb-3 row">
+                                    <label for="example-search-input"
+                                        class="col-sm-2 col-form-label text-end">Address</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-6">
+                                <h2>Service detail</h2>
+                                <div class="mb-3 row has-warning">
+                                    <label for="inputHorizontalWarning"
+                                        class="col-sm-2 col-form-label text-end">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control form-control-warning"
+                                            id="inputHorizontalWarning" placeholder="name@example.com">
+                                        
+                                    </div>
+                                </div>
+                                 <div class="mb-3 row">
+                                    <label for="example-search-input"
+                                        class="col-sm-2 col-form-label text-end">Address</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div> <!--end row-->
+                        <button class="btn btn-primary" type="submit" >Save</button>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!--end col-->
+
+        </div><!--end row-->
+    </form>
+</div>

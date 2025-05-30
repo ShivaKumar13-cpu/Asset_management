@@ -1,0 +1,202 @@
+<!-- <form [formGroup]="role" (ngSubmit)="createrole()">
+
+    <mat-card>
+
+        <mat-card-header>
+            <h1>{{title}}</h1>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          
+            <mat-form-field appearance="outline">
+                <mat-label>Select Business Vertival</mat-label>
+                <mat-select (selectionChange)="onChangeofBv($event)">
+                    <mat-option  class="add-option">
+                        <button mat-button color="primary" class="full-width">+ Create Business Vertical</button>
+                      </mat-option>
+                      @for (list of bvPerticular; track list) {
+                        <mat-option [value]="list.id">{{ list.name }}</mat-option>
+                      }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Select department</mat-label>
+                <mat-select formControlName="departmentId">
+                    <mat-option  class="add-option">
+                        <button mat-button color="primary" class="full-width">+ Create New Department</button>
+                      </mat-option>
+                      @for (list of departmentPerticular; track $index) {
+                        <mat-option [value]="list.id">{{ list.name }}</mat-option>
+                      }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Role Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button class="sub-but" type="submit" mat-raised-button color="primary">Save</button>
+                <a mat-raised-button color="accent" (click)="closepopup()">Close</a>
+            </mat-card-actions>
+
+        </mat-card-content>
+
+    </mat-card>
+</form> -->
+
+<!-- <div class="page-content">
+    <div class="container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 class="card-title">Role Information</h4>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-field">
+                                    <label for="employeeCode">Role Name</label>
+                                    <div class="input-container">
+                                        <input matInput id="employeeCode" formControlName="employeeCode"
+                                            placeholder="Enter employee code" appearance="outline">
+                                        <mat-icon class="status-icon" *ngIf="getFormControl('employeeCode').touched">
+                                            {{ getFormControl('employeeCode').valid ? 'done_all' : 'error_outline'
+                                            }}
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-field">
+                                    <label for="employeeCode">Department</label>
+                                    <div class="input-container">
+                                        <input matInput id="employeeCode" formControlName="employeeCode"
+                                            placeholder="Enter employee code" appearance="outline">
+                                        <mat-icon class="status-icon" *ngIf="getFormControl('employeeCode').touched">
+                                            {{ getFormControl('employeeCode').valid ? 'done_all' : 'error_outline'
+                                            }}
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-4">
+                                <div class="form-field">
+                                    <label for="employeeCode">UserType</label>
+                                    <div class="input-container">
+                                        <input matInput id="employeeCode" formControlName="employeeCode"
+                                            placeholder="Enter employee code" appearance="outline">
+                                        <mat-icon class="status-icon" *ngIf="getFormControl('employeeCode').touched">
+                                            {{ getFormControl('employeeCode').valid ? 'done_all' : 'error_outline'
+                                            }}
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="page-content">
+    <div class="container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 class="card-title">Assign menu and submenu permission</h4>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div>menu</div>
+                            <div class="col-md-12">
+                                
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>submenu</div>
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+    <h3>Menus</h3>
+    <div formArrayName="menus">
+        <div *ngFor="let menu of menus.controls; let i = index" [formGroupName]="i">
+            <label>
+                <input type="checkbox" formControlName="selected" />
+                {{ menu.get('label')?.value }}
+            </label>
+        </div>
+    </div>
+
+    <h3>Submenus</h3>
+
+<div class="submenu-grid">
+  <div *ngFor="let menuLabel of getMenuLabels()" class="submenu-column">
+    <h4>{{ menuLabel }}</h4>
+    <div *ngFor="let subMenuGroup of groupedSubMenus[menuLabel]">
+      <label>
+        <input type="checkbox" [formControl]="getSubMenuSelectedControl(subMenuGroup)"/>
+        {{ subMenuGroup.get('subMenuLabel')?.value }}
+      </label>
+    </div>
+  </div>
+</div>
+
+
+    <h3>Permissions</h3>
+    <div formArrayName="permissions">
+        <div *ngFor="let perm of permissions.controls; let i = index" [formGroupName]="i">
+            <strong>{{ perm.get('resourceName')?.value }}</strong><br>
+            <label><input type="checkbox" formControlName="canCreate"> Create</label>
+            <label><input type="checkbox" formControlName="canView"> View</label>
+            <label><input type="checkbox" formControlName="canEdit"> Edit</label>
+            <label><input type="checkbox" formControlName="canDelete"> Delete</label>
+            <br><br>
+        </div>
+    </div>
+
+    <h3>Extended Permissions</h3>
+    <div formArrayName="extendedPermissions">
+        <div *ngFor="let ext of extendedPermissions.controls; let i = index" [formGroupName]="i">
+            <label>
+                <input type="checkbox" formControlName="selected">
+                {{ ext.get('description')?.value }} ({{ ext.get('resourceName')?.value }})
+            </label>
+        </div>
+    </div>
+
+    <button type="submit">Save Role</button>
+</form>

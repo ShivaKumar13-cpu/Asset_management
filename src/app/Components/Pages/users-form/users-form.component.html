@@ -1,0 +1,300 @@
+<div class="outerStepper">
+    <div class="innerStepper">
+        <div class="form-container">
+            <mat-horizontal-stepper labelPosition="bottom" #stepper>
+                <!-- Step 1: Organizational Information -->
+                <mat-step [stepControl]="stepForms[0]">
+                    <form [formGroup]="stepForms[0]">
+                        <div class="for-in-con">
+                            <ng-template matStepLabel>Organizational Information</ng-template>
+
+                            <div class="upper">
+                                <div class="title-name">
+                                    <h5>Organizational Information</h5>
+                                    <span>Mandatory informations</span>
+                                </div>
+                                <div class="row">
+                                    <!-- Business Verticals -->
+                                    <div class="form-field" *ngIf="divisionUser">
+                                        <label for="businessVerticalId">User Level Type</label>
+                                        <div class="input-container">
+                                            <mat-select id="userLevelType" formControlName="userLevelType" 
+                                                appearance="outline" (selectionChange)="onChangeUserType($event)">
+                                                <mat-option [value]="BUSINESS_DIVISION">BUSINESS DIVISION</mat-option>
+                                                <mat-option [value]="BUSINESS_VERTICAL">BUSINESS VERTICAL</mat-option>
+                                                
+                                            </mat-select>
+                                            <mat-icon class="status-icon"
+                                                *ngIf="getFormControl('businessVerticalId').touched">
+                                                {{ getFormControl('businessVerticalId').valid ? 'done_all' :
+                                                'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('businessVerticalId').hasError('required') && getFormControl('businessVerticalId').touched">
+                                            Please select user level type
+                                        </mat-error>
+                                    </div>
+                                    <div class="form-field" *ngIf="selectedDivisionUser">
+                                        <label for="businessVerticalId">Business Verticals</label>
+                                        <div class="input-container">
+                                            <mat-select id="businessVerticalId" formControlName="businessVerticalId"
+                                                 appearance="outline"
+                                                (selectionChange)="onChangeBvGroupDept($event)">
+                                                <mat-option class="disable-checkbox">
+                                                    <button mat-button color="primary" class="full-width">+ Create
+                                                        Business Vertical</button>
+                                                </mat-option>
+                                                @for (list of bvNameList; track list) {
+                                                <mat-option [value]="list.id">{{ list.name }}</mat-option>
+                                                }
+                                            </mat-select>
+                                            <mat-icon class="status-icon"
+                                                *ngIf="getFormControl('businessVerticalId').touched">
+                                                {{ getFormControl('businessVerticalId').valid ? 'done_all' :
+                                                'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+
+                                    <!-- Department -->
+                                    <div class="form-field">
+                                        <label for="departmentIds">Department</label>
+                                        <div class="input-container">
+                                            <mat-select id="departmentIds" formControlName="departmentIds" multiple
+                                                appearance="outline" (selectionChange)="onChangedeptGroupRole($event)">
+                                                <mat-option class="disable-checkbox">
+                                                    <button mat-button color="primary" class="full-width">+ Create New
+                                                        Department</button>
+                                                </mat-option>
+                                              
+                                                    @for (dept of deptList; track dept) {
+                                                    <mat-option [value]="dept.id"
+                                                        >{{dept.name}}</mat-option>
+                                                    }
+                                            </mat-select>
+                                            <mat-icon class="status-icon"
+                                                *ngIf="getFormControl('departmentIds').touched">
+                                                {{ getFormControl('departmentIds').valid ? 'done_all' : 'error_outline'
+                                                }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('departmentIds').hasError('required') && getFormControl('departmentIds').touched">
+                                            Department is required
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Role -->
+                                    <div class="form-field">
+                                        <label for="roleIds">Role</label>
+                                        <div class="input-container">
+                                            <mat-select id="roleIds" formControlName="roleIds" multiple
+                                                appearance="outline">
+                                                <mat-option class="add-option">
+                                                    <button mat-button color="primary" class="full-width">+ Create
+                                                        Role</button>
+                                                </mat-option>
+                                                @for (group of getSelectedDeptArray(); track group) {
+                                                <mat-optgroup [label]="group.name" [disabled]="group.disabled">
+                                                    @for (role of group.role; track role) {
+                                                    <mat-option [value]="role.id">{{role.name}}</mat-option>
+                                                    }
+                                                </mat-optgroup>
+                                                }
+                                            </mat-select>
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('roleIds').touched">
+                                                {{ getFormControl('roleIds').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('roleIds').hasError('required') && getFormControl('roleIds').touched">
+                                            At least one role is required
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Employee Code -->
+                                    <div class="form-field">
+                                        <label for="employeeCode">Employee Code</label>
+                                        <div class="input-container">
+                                            <input matInput id="employeeCode" formControlName="employeeCode"
+                                                placeholder="Enter employee code" appearance="outline">
+                                            <mat-icon class="status-icon"
+                                                *ngIf="getFormControl('employeeCode').touched">
+                                                {{ getFormControl('employeeCode').valid ? 'done_all' : 'error_outline'
+                                                }}
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+
+                                    <div class="but-ali-right">
+                                        <button class="css-exssr5" mat-button matStepperNext>Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+
+                <!-- Step 2: Personal Information -->
+                <mat-step [stepControl]="stepForms[1]">
+                    <form [formGroup]="stepForms[1]">
+                        <div class="for-in-con">
+                            <ng-template matStepLabel>Employee Information</ng-template>
+
+                            <div class="upper">
+                                <div class="title-name">
+                                    <h5>Employee Information</h5>
+                                    <span>Mandatory informations</span>
+                                </div>
+                                <div class="row">
+                                    <!-- Full Name -->
+                                    <div class="form-field">
+                                        <label for="name">Full Name</label>
+                                        <div class="input-container">
+                                            <input matInput id="name" formControlName="name" placeholder="eg. Virat"
+                                                appearance="outline">
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('name').touched">
+                                                {{ getFormControl('name').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('name').hasError('required') && getFormControl('name').touched">
+                                            Full name is required
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="form-field">
+                                        <label for="email">Email</label>
+                                        <div class="input-container">
+                                            <input matInput id="email" type="email" formControlName="email"
+                                                placeholder="eg. virat@gmail.com" appearance="outline">
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('email').touched">
+                                                {{ getFormControl('email').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('email').hasError('required') && getFormControl('email').touched">
+                                            Email is required
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="getFormControl('email').hasError('email') && !getFormControl('email').hasError('required')">
+                                            Please enter a valid email
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Username -->
+                                    <div class="form-field">
+                                        <label for="username">Username</label>
+                                        <div class="input-container">
+                                            <input matInput id="username" formControlName="username"
+                                                placeholder="eg. IamVirat" appearance="outline">
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('username').touched">
+                                                {{ getFormControl('username').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('username').hasError('required') && getFormControl('username').touched">
+                                            Username is required
+                                        </mat-error>
+                                        <mat-error *ngIf="getFormControl('username').hasError('minlength')">
+                                            Username must be at least 4 characters
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="form-field">
+                                        <label for="password">Password</label>
+                                        <div class="input-container">
+                                            <input matInput id="password" type="password" formControlName="password"
+                                                placeholder="*****" appearance="outline">
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('password').touched">
+                                                {{ getFormControl('password').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('password').hasError('required') && getFormControl('password').touched">
+                                            Password is required
+                                        </mat-error>
+                                        <mat-error *ngIf="getFormControl('password').hasError('minlength')">
+                                            Password must be at least 8 characters
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- Mobile Number -->
+                                    <div class="form-field">
+                                        <label for="mobileNumber">Mobile Number</label>
+                                        <div class="input-container">
+                                            <input matInput id="mobileNumber" type="tel" formControlName="mobileNumber"
+                                                placeholder="Enter mobile number" appearance="outline">
+                                            <mat-icon class="status-icon"
+                                                *ngIf="getFormControl('mobileNumber').touched">
+                                                {{ getFormControl('mobileNumber').valid ? 'done_all' : 'error_outline'
+                                                }}
+                                            </mat-icon>
+                                        </div>
+                                        <mat-error
+                                            *ngIf="getFormControl('mobileNumber').hasError('required') && getFormControl('mobileNumber').touched">
+                                            Mobile number is required
+                                        </mat-error>
+                                        <mat-error *ngIf="getFormControl('mobileNumber').hasError('pattern')">
+                                            Please enter a valid 10-digit number
+                                        </mat-error>
+                                    </div>
+
+                                    <div class="dis-fle">
+                                        <button class="css-gixbx0" mat-button matStepperPrevious>Back</button>
+                                        <button class="css-exssr5" mat-button matStepperNext>Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+
+                <!-- Step 3: Additional Information -->
+                <mat-step [stepControl]="stepForms[2]">
+                    <form [formGroup]="stepForms[2]">
+                        <div class="for-in-con">
+                            <ng-template matStepLabel>Additional Information</ng-template>
+
+                            <div class="upper">
+                                <div class="title-name">
+                                    <h5>Additional Information</h5>
+                                    <span>Optional informations</span>
+                                </div>
+                                <div class="content-pert">
+                                    <!-- Description -->
+                                    <div class="form-field1">
+                                        <label for="description">Description</label>
+                                        <div class="input-container col-12">
+                                            <textarea matInput id="description" formControlName="description"
+                                                placeholder="eg. He is a good player" appearance="outline"></textarea>
+                                            <mat-icon class="status-icon" *ngIf="getFormControl('description').touched">
+                                                {{ getFormControl('description').valid ? 'done_all' : 'error_outline' }}
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+
+                                    <div class="dis-fle">
+                                        <button class="css-gixbx0" mat-button matStepperPrevious>Back</button>
+                                        <button class="css-exssr5" mat-button (click)="saveUser()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>
+
+<!-- Debug section (remove in production) -->
+<!-- <div style="position: fixed; bottom: 0; left: 0; background: white; padding: 1rem; border: 1px solid #ccc; z-index: 1000;">
+        <h3>Form Debug</h3>
+        <pre>Form Values: {{ userForm.value | json }}</pre>
+        <pre>Form Valid: {{ userForm.valid }}</pre>
+        <pre>Form Touched: {{ userForm.touched }}</pre>
+    </div>   -->

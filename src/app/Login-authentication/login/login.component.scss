@@ -1,0 +1,142 @@
+
+
+
+
+
+.wrapper{
+    width: 420px;
+    background: rgba(255, 255, 255, 0.239);
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    // color: #fff;
+    padding: 30px 40px 40px;
+    margin-right: 10rem;
+    border-radius: 1rem;
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-size: 16px;
+    color: #000000;
+    padding: 20px 40px 20px 20px;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.628);
+    border-radius: 10px;
+}
+
+.input-box input::placeholder{
+    color: #000000;
+}
+
+.input-box mat-icon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: black;
+}
+
+.wrapper .remember-forget{
+    display: flex;
+    justify-content: end;
+    font-size: 13px;
+    margin: 0px 0 15px;
+}
+
+.remember-forget label{
+  font-weight: 600 !important;
+}
+.remember-forget label input{
+    accent-color: #fff;
+    margin-right: 10px;
+}
+
+.remember-forget a{
+    // color: #fff;
+    text-decoration: none;
+}
+
+.remember-forget a:hover{
+    text-decoration: underline;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: #333;
+    font-weight: 600;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.wrapper .btn:hover{
+    background: rgba(255, 255, 255, .2);
+    // color: #fff;
+    // border: 2px solid black;
+}
+
+.wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a{
+    // color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+.body-cover{
+  position: relative;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 100vh !important;
+  background-size: cover !important;
+  background-position: center;
+}
+.body-cover {
+ 
+  display: flex;
+  justify-content: end !important;
+  align-items: center !important;
+  min-height: 100vh !important;
+}
+
+.body-cover .background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}

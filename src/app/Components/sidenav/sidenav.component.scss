@@ -1,0 +1,228 @@
+.sidenav {
+    background-color: white;
+    box-shadow: 0px 0px 10px 0 rgba(34, 41, 47, 0.1);
+    transition: all 0.5s ease;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 5rem;
+
+    height: 100vh;
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+
+        .logo {
+            background-color: rgb(245 252 247);
+            text-align: center;
+            width: 3rem;
+            min-width: 3rem;
+            border-radius: 0.313rem;
+            padding: 0.313rem;
+            font-size: 24px;
+            font-weight: 900;
+            cursor: pointer;
+            border: none;
+
+        }
+
+        .logo-text {
+            margin-left: 1rem;
+            font-size: 22px;
+            font-weight: 700;
+            color: black;
+        }
+
+        .btn-close {
+            margin-left: 1rem;
+            cursor: pointer;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+
+        }
+
+        .close-icon {
+            color: grey;
+            font-size: 20px;
+        }
+    }
+}
+
+.sidenav-collapsed {
+    width: 16rem !important;
+    background-color: white;
+}
+
+.sidenav-nav {
+    list-style: none;
+    padding: 0.938rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    cursor: pointer;
+
+    .sidenav-nav-item {
+        width: 100%;
+        margin-bottom: 0.65rem;
+
+        .sidenav-nav-link {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            color: black;
+            text-decoration: none;
+            border-radius: 0.65rem;
+            transition: all 0.3s ease;
+
+            .g-icon {
+                font-size: 22px;
+                color: #808080e3;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rem;
+                text-align: center;
+            }
+
+            .sidenav-nav-text {
+                margin-left: 0.5rem;
+                min-width: 6.5rem;
+            }
+        }
+
+        .sidenav-nav-link:hover {
+            // background-color: white !important;
+            // color: black;
+            // box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
+            background-color: white !important;
+            color: #22c55e;
+
+
+            .menu-collapsed-icon {
+                color: black
+            }
+        }
+    }
+
+
+
+
+}
+
+.active {
+    background-color: rgba(34, 197, 94, .05);
+    ;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
+
+    .menu-collapsed-icon,
+    .g-icon,
+    .sidenav-nav-text {
+        color: #22c55e !important;
+    }
+}
+
+
+
+.menu-collapsed-icon {
+    font-size: 20px;
+    font-weight: 100;
+    width: 2rem;
+    min-width: 2rem;
+    margin: auto 0.5rem auto auto;
+    text-align: center;
+
+}
+
+.sublevel-nav {
+    list-style: none;
+    padding-left: 0.5rem;
+    // margin-left: 10px;
+
+    .sublevel-nav-item {
+        .sublevel-nav-link {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            font-size: 15px;
+            color: #898989;
+            text-decoration: none;
+            border-radius: 0.625rem;
+            transition: all .3s ease;
+
+            .sublevel-link-icon {
+                font-size: 16px;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rrem;
+                text-align: center;
+            }
+
+            .sublevel-link-text {
+                margin-left: 0.8rem;
+            }
+
+
+        }
+
+        .sublevel-nav-link:hover {
+            color: #22c55e !important;
+        }
+    }
+}
+
+
+
+.scrollwrap {
+    overflow-y: auto;
+    visibility: hidden;
+    height: calc(100% - 3.65rem);
+}
+
+.sidenav-nav,
+.scrollwrap:hover,
+.scrollwrap:focus {
+    visibility: visible;
+}
+
+.scrollwrap_delayed {
+    transition: visibility 0.2s 0.2s;
+}
+
+.scrollwrap::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollwrap::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.scrollwrap::-webkit-scrollbar-thumb {
+    background-color: #556268;
+    border-radius: 20px;
+}
+
+.scrollwrap {
+    scrollbar-width: thin;
+    scrollbar-color: #556268 transparent;
+
+}
+
+.active-sublevel {
+    color: #22c55e !important;
+}
+
+// .sidenav {
+//     width: 5rem;
+//     transition: all 0.3s ease;
+
+//     &.sidenav-collapsed {
+//         width: 16rem;
+//     }
+// }

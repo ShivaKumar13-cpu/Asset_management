@@ -1,0 +1,43 @@
+<!-- <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':'' "> -->
+<div class="sidenav" 
+[class.sidenav-collapsed]="collapsed || isHovered"
+(mouseenter)="onMouseEnter()" 
+(mouseleave)="onMouseLeave()">
+
+    <div class="logo-container">
+        <button class="logo" (click)="toggleCollapse()">AT</button>
+        <div class="logo-text" *ngIf="collapsed || isHovered">AssetTrack</div>
+        <button class="btn-close" @rotation *ngIf="collapsed || isHovered">
+            <i class="fal fa-times close-icon" (click)="closeSideNav()"></i>
+        </button>
+    </div>
+
+    <div class="scrollwrap scrollwrap_delayed">
+
+        <ul class="sidenav-nav">
+
+            <li class="sidenav-nav-item" *ngFor="let menu of menuItems">
+                <a class="sidenav-nav-link" (click)="handleClick(menu) 
+                    " *ngIf="menu.subs && menu.subs.length > 0" [ngClass]="getActiveClass(menu)"
+                    >
+                    <!-- matTooltip="{{ menu.label }}" [matTooltipDisabled]="collapsed" matTooltipPosition="right" -->
+                    <!-- <i [class]="menu.icon"></i> -->
+                    <span class="material-symbols-outlined g-icon">{{menu.icon}}</span>
+                    <span class="sidenav-nav-text" @fadeInOut *ngIf="collapsed || isHovered">{{ menu.label }}</span>
+                    <i class="menu-collapsed-icon" *ngIf="menu.subs && collapsed || isHovered"
+                        [ngClass]="!menu.expanded ? 'fa fa-angle-right':'fa fa-angle-down' "></i>
+                </a>
+                <a class="sidenav-nav-link" *ngIf="!menu.subs || (menu.subs && menu.subs.length === 0)"
+                    [routerLink]="menu.to" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <span class="material-symbols-outlined g-icon">{{menu.icon}}</span>
+                    <span class="sidenav-nav-text" @fadeInOut *ngIf="collapsed || isHovered">{{ menu.label }}</span>
+                </a>
+                <div *ngIf="(collapsed || isHovered) && menu.subs && menu.subs.length > 0">
+                    <app-sublevel-menu [data]="menu" [collapsed]="collapsed || isHovered" [multiple]="multiple"
+                        [expanded]="menu.expanded"></app-sublevel-menu>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

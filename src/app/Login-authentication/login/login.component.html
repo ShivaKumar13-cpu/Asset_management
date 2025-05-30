@@ -1,0 +1,31 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="body-cover">
+  <img src="/assets/image/Asset-2.png" alt="Background Image" class="background-img">
+  <div class="wrapper">
+    <form action="" [formGroup]="loginForm">
+
+      <h1>Asset Track</h1>
+
+      <div class="input-box">
+        <input type="text" placeholder="Username" formControlName="username">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+
+      <div class="input-box">
+        <input type="password" placeholder="Password" formControlName="password">
+        <mat-icon>lock</mat-icon>
+        <div class="remember-forget">
+          <a href="#">Forgot password?</a>
+        </div>
+      </div>
+
+      
+
+      <button type="submit" class="btn" (click)="onLoginUser()">Login</button>
+
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,95 @@
+.mat-mdc-tab-body-wrapper {
+    margin-top: 2rem !important;
+}
+
+.row name {
+    margin-top: 2rem !important;
+}
+
+.name {
+    margin-top: 2rem;
+}
+
+.but-name {
+    text-align: end;
+}
+
+.nav-in {
+    font-size: 13px;
+    font-weight: 400;
+    color: grey;
+}
+
+.sub-but {
+    margin-right: 0.3rem;
+}
+
+.padding-2 {
+    padding: 0 2rem !important;
+}
+
+mat-card {
+    margin: 0 1rem;
+}
+
+.mat-mdc-tab-labels {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.demo-tab-content {
+    padding: 16px;
+}
+
+.mat-mdc-tab-label-container {
+    border-bottom-style: solid;
+    border-bottom-width: 1px !important;
+    border-bottom-color: #00000030 !important;
+}
+.card .card-header .card-title {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+.nav-item a {
+    box-shadow: none !important;
+    border: none;
+    color: black;
+
+    &:hover {
+        color: #22c55e;
+    }
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #d4d4d88f;
+}
+
+.active {
+    background-color: rgba(34, 197, 94, 0);
+}
+.fa, .fas {
+    font-weight: 500 !important;
+}
+.p-1{
+    padding: 0 1rem !important;
+}
+.btn-outline-primary {
+    --bs-btn-color: #22c55e;
+    --bs-btn-border-color: #22c55e;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #22c55e;
+    --bs-btn-hover-border-color: #22c55e;
+    --bs-btn-focus-shadow-rgb: 34, 197, 94;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: #22c55e;
+    --bs-btn-active-border-color: #22c55e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #22c55e;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #22c55e;
+    --bs-gradient: none
+}
+
+.btn{
+    font-size: 0.8rem;
+}
