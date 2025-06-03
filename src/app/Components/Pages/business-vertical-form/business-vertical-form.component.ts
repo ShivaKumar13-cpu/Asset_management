@@ -103,7 +103,7 @@ export class BusinessVerticalFormComponent implements OnInit {
       location: new FormControl('', [Validators.required]),
       verticalCode: new FormControl('', [Validators.required]),
       businessDivisionId: new FormControl(0, [Validators.required]),
-      departmentIds: new FormControl([], [Validators.required]),
+      departmentIds: new FormControl([], []),
       createdBy: new FormControl(this.userName, [Validators.required])
     });
 

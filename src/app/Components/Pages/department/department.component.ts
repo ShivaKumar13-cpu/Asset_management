@@ -157,9 +157,14 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
     } else if (option.type === 'vertical') {
       // Load vertical-specific data
       console.log('loaded Vertical');
-      this.deptService.getDepartmentByBvId(option.data.id).subscribe((res: Department[]) => {
+      console.log('data',option.data.id);
+
+      const dataId = option.data.id
+      
+      this.deptService.getDepartmentByBvId(dataId).subscribe((res: Department[]) => {
         this.dataSource.data = res;
         this.dataSource.paginator = this.paginator;
+        console.log('entered vertical with code ', option.data.id);
       });
     }
   }

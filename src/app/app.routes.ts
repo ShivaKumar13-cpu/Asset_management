@@ -21,6 +21,8 @@ import { RoleFormCreateComponent } from './Components/Pages/role-form-create/rol
 import { PermissionsComponent } from './Components/Pages/permissions/permissions.component';
 import { VendorComponent } from './Components/Pages/vendor/vendor.component';
 import { VendorFormComponent } from './Components/Pages/Forms/vendor-form/vendor-form.component';
+import { AssetFormComponent } from './Components/Pages/Forms/asset-form/asset-form.component';
+import { InventryComponent } from './Components/Pages/inventry/inventry.component';
 
 export const routes: Routes = [
 
@@ -37,87 +39,27 @@ export const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            {
-                path: 'dashboard',
-                component: DashboardComponent,
-                // canActivate: [authGuard]
-            },
-            {
-                path: 'admin',
-                component: AdminComponent,
-                // canActivate: [authGuard]
-            },
-            {
-                path: 'featureMod',
-                component: FeatureModuleComponent
-                // canActivate: [authGuard]
-            },
-            {
-                path: 'equipment',
-                component: EquipmentComponent
-                // canActivate: [authGuard]
-            },
-            {
-                path: 'businessVertical',
-                component: BusinessVerticalComponent
-                // canActivate: [authGuard]
-            },
-            {
-                path: 'department',
-                component: DepartmentComponent
-            },
-            {
-                path: 'users',
-                component: UsersComponent
-            },
-            {
-                path: 'users/form',
-                component: UsersFormComponent
-            },
-            {
-                path: 'smart/dashboard',
-                component: SmartDashboardComponent
-            },
-            {
-                path: 'role',
-                component: RoleComponent
-            },
-            {
-                path: 'role/form',
-                component: RoleFormComponent
-            },
-            {
-                path: 'assets',
-                component: AssetsComponent
-            }, 
-            {
-                path: 'asset-varient',
-                component: AssetVarientComponent
-            }, 
-            {
-                path: 'masterdata/asset-specification',
-                component: AssetSpecificationComponent
-            }, 
-            {
-                path: 'admin/AccessPolicy',
-                component: AccessPolicyComponent
-            },
-            {
-                path: 'role/Create',
-                component: RoleFormCreateComponent
-            },
-            {
-                path: 'permission',
-                component: PermissionsComponent
-            },
-            {
-                path: 'vendor',
-                component: VendorComponent
-            },
-            {
-                path: 'vendor/Form',
-                component: VendorFormComponent
-            }
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'admin', component: AdminComponent },
+            { path: 'featureMod', component: FeatureModuleComponent },
+            { path: 'equipment', component: EquipmentComponent },
+            { path: 'businessVertical', component: BusinessVerticalComponent },
+            { path: 'department', component: DepartmentComponent },
+            { path: 'users', component: UsersComponent },
+            { path: 'users/form', component: UsersFormComponent },
+            { path: 'smart/dashboard', component: SmartDashboardComponent },
+            { path: 'role', component: RoleComponent },
+            { path: 'role/form', component: RoleFormComponent },
+            { path: 'assets', component: AssetsComponent },
+            { path: 'asset-varient', component: AssetVarientComponent },
+            { path: 'masterdata/asset-specification', component: AssetSpecificationComponent },
+            { path: 'admin/AccessPolicy', component: AccessPolicyComponent },
+            { path: 'role/Create', component: RoleFormCreateComponent },
+            { path: 'permission', component: PermissionsComponent },
+            { path: 'vendor', component: VendorComponent },
+            { path: 'vendor/Form', component: VendorFormComponent },
+            { path: 'asset/Form', component: AssetFormComponent },
+            { path: 'inventry', component: InventryComponent },
 
         ]
 

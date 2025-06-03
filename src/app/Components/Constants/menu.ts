@@ -138,7 +138,7 @@ const data: IMenuItem[] = [
                 for: 'Master Data',
                 icon: 'trail_length_short',
                 label: 'Warranties',
-                to: 'asset-varient'
+                to: 'inventry'
             }
         ],
     },

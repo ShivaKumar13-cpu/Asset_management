@@ -1,0 +1,177 @@
+<div class="padding-2">
+    <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2>Create Asset</h2>
+                            </div><!--end col-->
+                        </div> <!--end row-->
+                    </div><!--end card-header-->
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-lg-6">
+                               
+                                <div class="mb-3 row">
+                                    <mat-checkbox formControlName="bulkAsset" class="col-sm-2 col-form-label text-end" (change)="checkBoxChange($event)"></mat-checkbox>
+                                    <div class="col-sm-10 cent-te">
+                                        <span>Bulk Asset</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-text-input"
+                                        class="col-sm-2 col-form-label text-end">Code</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" formControlName="assetCode" type="text"
+                                            id="example-text-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-email-input"
+                                        class="col-sm-2 col-form-label text-end">Name</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" formControlName="name" type="email"
+                                            id="example-email-input">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-number-input"
+                                        class="col-sm-2 col-form-label text-end">Quantity</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="number" value="42" id="example-number-input"
+                                            formControlName="quantity">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row has-warning" *ngIf="!IsbulkAsset">
+                                    <label for="inputHorizontalWarning" class="col-sm-2 col-form-label text-end">Serial
+                                        Number</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" formControlName="serialNumber"
+                                            class="form-control form-control-warning" placeholder="name@example.com">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Equipment</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="assetInstanceId"
+                                            aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            @for (item of _assetInstance; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="example-search-input"
+                                        class="col-sm-2 col-form-label text-end">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" formControlName="description" rows="5"
+                                            id="message"></textarea>
+                                    </div>
+                                </div>
+
+                            </div><!--end col-->
+
+
+                            <div class="col-lg-6">
+                                <div class="mb-3 row" *ngIf="divUser">
+                                    <label class="col-sm-2 col-form-label text-end">Business Vertical</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="businessVerticalId"
+                                            (change)="OnChangeBv($event)" aria-label="Default select example">
+                                            <option selected>Select Business Vertical</option>
+                                            @for (item of _businessVerticalList; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Department</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="departmentId"
+                                            (change)="OnchangeDept($event)" aria-label="Default select example">
+                                            <option selected>Select Departments</option>
+                                            @for (item of departmentList; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Asset Instance</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="vendorTypeId"
+                                            aria-label="Default select example">
+                                            <option selected>Select Asset Instance</option>
+                                            @for (item of assetInstnce; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Custom Fields</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="assetCustomFieldIds" multiple
+                                            aria-label="Default select example">
+                                            <option selected>Select Custom Fields</option>
+                                            @for (item of assetInstnce; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Brand</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="brandId"
+                                            (change)="onBrandChange($event)" aria-label="Default select example">
+                                            <option selected>Select Brand</option>
+                                            @for (item of assetInstnce; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Model</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="modelId"
+                                            aria-label="Default select example">
+                                            <option selected>Select Model</option>
+                                            @for (item of assetInstnce; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label text-end">Warranty</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" formControlName="warrantyId"
+                                            aria-label="Default select example">
+                                            <option selected>Select Warranty</option>
+                                            @for (item of assetInstnce; track $index) {
+                                            <option [value]="item.id">{{item.name}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div><!--end col-->
+
+
+                        </div> <!--end row-->
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!--end col-->
+
+        </div><!--end row-->
+    </form>
+</div>

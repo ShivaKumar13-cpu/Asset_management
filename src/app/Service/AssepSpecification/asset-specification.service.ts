@@ -17,8 +17,8 @@ export class AssetSpecificationService {
 
 
 
-  getAllBrand(): Observable<Brand> {
-    return this.http.post<Brand>(`${this.baseUrl}assets/brands/getAll`, {});
+  getAllBrand(): Observable<Brand[]> {
+    return this.http.post<Brand[]>(`${this.baseUrl}assets/brands/getAll`, {});
   }
   getAllModel(): Observable<Model[]> {
     return this.http.post<Model[]>(`${this.baseUrl}assets/models/getAll`, {});
@@ -71,5 +71,9 @@ export class AssetSpecificationService {
   }
   editWarrenty(warrenty: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}assets/warranties/update`, warrenty);
+  }
+
+  getModelByBrand(id: number): Observable<any> {
+    return this.http.post<Warrenty>(`${this.baseUrl}assets/models/by-brand`, { brandId: id });
   }
 }

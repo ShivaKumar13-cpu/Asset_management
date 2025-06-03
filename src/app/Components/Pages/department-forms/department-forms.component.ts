@@ -1,3 +1,4 @@
+import { empty } from 'rxjs';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,25 +34,34 @@ export class DepartmentFormsComponent implements OnInit {
   businessDivisionList: any[] = []
   created: any;
   department!: FormGroup
+  divLevelPresent = false
 
 
   ngOnInit(): void {
-    this.getAllBusinessDivision();
+
+    this.businessServ.getAllBusinessDivision().subscribe((res: any) => {
+      this.businessDivisionList = res
+      if (this.businessDivisionList.length > 0) {
+        this.department = new FormGroup({
+          name: new FormControl('', [Validators.required]),
+          businessDivisionId: new FormControl(this.businessDivisionList[0].id),
+          description: new FormControl('', [Validators.required]),
+          createdBy: new FormControl(this.created)
+        })
+      } else {
+        this.department = new FormGroup({
+          name: new FormControl('', [Validators.required]),
+          description: new FormControl('', [Validators.required]),
+          createdBy: new FormControl(this.created)
+        })
+      }
+    })
+
     const user = sessionStorage.getItem('User');
     if (user) {
       const parseUser = JSON.parse(user);
       this.created = parseUser.name;
     }
-
-    this.department = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      businessDivisionId: new FormControl(0),
-      description: new FormControl('', [Validators.required]),
-      createdBy: new FormControl(this.created)
-    })
-    console.log(this.department);
-
-
 
     this.dialogData = this.data;
     console.log('dialog code', this.dialogData.code);
@@ -77,11 +87,7 @@ export class DepartmentFormsComponent implements OnInit {
 
 
 
-  getAllBusinessDivision() {
-    this.businessServ.getAllBusinessDivision().subscribe((res: any) => {
-      this.businessDivisionList = res
-    })
-  }
+
 
 
 
@@ -121,8 +127,8 @@ export class DepartmentFormsComponent implements OnInit {
   //   })
   // }
 
-  createWhenBvAdded(){
-    
+  createWhenBvAdded() {
+
   }
 
 }

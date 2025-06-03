@@ -39,15 +39,15 @@ export class HeaderComponent implements OnInit {
       if (user.userLevelType === "BUSINESS_VERTICAL") {
         // Your logic here
         this.userLevelType = user.userLevelType
-        
+
       } else {
         this.loadUserDataAndHeaderValues();
       }
     }
 
-    
+
   }
-  
+
   loadUserDataAndHeaderValues() {
     const user = sessionStorage.getItem('User');
     if (user) {
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       this.userLevelType = userData.userLevelType;
       this.roleIds = userData.roleIds
       this.businessDivId = userData.businessDivisionId;
-  
+
       this.headerValue(this.businessDivId); // Safe to call here
     } else {
       console.warn('User not found in sessionStorage.');
@@ -65,9 +65,12 @@ export class HeaderComponent implements OnInit {
 
 
 
-onSelectionChange(event: MatSelectChange) {
-  this.divisionService.setDivision(event.value);
-}
+  onSelectionChange(event: MatSelectChange) {
+    this.divisionService.setDivision(event.value);
+    console.log('log ',event.value);
+    
+
+  }
 
 
 
@@ -93,7 +96,7 @@ onSelectionChange(event: MatSelectChange) {
     return styleClass;
   }
 
-  
+
 
 
   fullScreenMode() {
@@ -113,15 +116,16 @@ onSelectionChange(event: MatSelectChange) {
         type: 'division',
         data: this.businessDivision
       };
-      
-  
+
+
       this.selectedOption = defaultSelection;
       this.divisionService.setDivision(defaultSelection);
       this.selectedOptionId = this.businessDivision.id;
+      this.businessSrv.getAllBusinessVerticalByBDId(this.selectedOptionId).subscribe((res: any) => {
+        this.businessVerByDivisionIdList = res;
+      })
     })
-    this.businessSrv.getAllBusinessVerticalByBDId(this.businessDivision.id).subscribe((res: any) => {
-      this.businessVerByDivisionIdList = res;
-    })
+
   }
 
   compareOptions = (a: any, b: any) => {

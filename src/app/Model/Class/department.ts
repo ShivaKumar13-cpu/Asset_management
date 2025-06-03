@@ -3,7 +3,7 @@ export interface Department {
     id: number,
     name: string,
     description: string,
-    businessDivisionId: number,
+    businessDivisionId?: number,
     createdBy: string
 
 }

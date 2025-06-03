@@ -7,12 +7,10 @@ import { DepartmentsService } from '../../../Service/Departments/departments.ser
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RoleService } from '../../../Service/Role/role.service';
-import { ToastrService } from 'ngx-toastr';
 import { BusinessVerticalService } from '../../../Service/Business-Vertical/business-vertical.service';
 import { MatOptionModule } from '@angular/material/core';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { AccessPolicyService } from '../../../Service/AccessPolicy/access-policy.service';
-import { Menu1, MenuWithSelection } from 'c:/Users/RIM0912/Desktop/Asset Track/AssetTrack/src/app/Model/Class/Access';
 
 @Component({
   selector: 'app-role-form',
@@ -38,7 +36,6 @@ export class RoleFormComponent implements OnInit {
   roleForm!: FormGroup;
   stepForms: FormGroup[] = [];
   menuList: any[] = [];
-  menuAndSubmenuList: MenuWithSelection[] = [];
 
 
 

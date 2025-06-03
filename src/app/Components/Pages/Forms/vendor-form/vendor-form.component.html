@@ -1,5 +1,5 @@
 <div class="padding-2">
-    <form>
+    <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="card">
@@ -17,39 +17,43 @@
                                     <label for="example-text-input"
                                         class="col-sm-2 col-form-label text-end">Code</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="example-text-input">
+                                        <input class="form-control" formControlName="vendorCode" type="text"
+                                            id="example-text-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="example-email-input"
                                         class="col-sm-2 col-form-label text-end">Name</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="email" id="example-email-input">
+                                        <input class="form-control" formControlName="vendorName" type="email"
+                                            id="example-email-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row has-warning">
                                     <label for="inputHorizontalWarning"
                                         class="col-sm-2 col-form-label text-end">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-warning"
-                                            id="inputHorizontalWarning" placeholder="name@example.com"> 
+                                        <input type="email" formControlName="vendorEmail"
+                                            class="form-control form-control-warning" id="inputHorizontalWarning"
+                                            placeholder="name@example.com">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="example-tel-input"
                                         class="col-sm-2 col-form-label text-end">Mobile</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="tel"
+                                        <input class="form-control" type="tel" formControlName="phoneNumber"
                                             placeholder="enter the vendor mobile number" id="example-tel-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-2 col-form-label text-end">Vendor Type</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" formControlName="vendorTypeId"
+                                            aria-label="Default select example">
                                             <option selected>Open this select menu</option>
                                             @for (item of _vendorTypeList; track $index) {
-                                            <option  [value]="item.id">{{item.name}}</option>
+                                            <option [value]="item.id">{{item.name}}</option>
                                             }
                                         </select>
                                     </div>
@@ -58,7 +62,8 @@
                                     <label for="example-search-input"
                                         class="col-sm-2 col-form-label text-end">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                        <textarea class="form-control" formControlName="description" rows="5"
+                                            id="message"></textarea>
                                     </div>
                                 </div>
 
@@ -70,35 +75,37 @@
                                     <label for="example-search-input"
                                         class="col-sm-2 col-form-label text-end">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                        <textarea formControlName="vendorAddress" class="form-control" rows="5"
+                                            id="message"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <label for="example-url-input" class="col-sm-2 col-form-label text-end">City</label>
+                                    <label for="example-url-input" formControlName="city"
+                                        class="col-sm-2 col-form-label text-end">City</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="example-url-input">
+                                        <input class="form-control" formControlName="city" id="example-url-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="example-url-input"
                                         class="col-sm-2 col-form-label text-end">State</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="example-url-input">
+                                        <input class="form-control" formControlName="state" id="example-url-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="example-url-input"
                                         class="col-sm-2 col-form-label text-end">Country</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="example-url-input">
+                                        <input class="form-control" formControlName="country" id="example-url-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="example-url-input" class="col-sm-2 col-form-label text-end">Pin
                                         Code</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="example-url-input">
+                                        <input class="form-control" formControlName="pincode" id="example-url-input">
                                     </div>
                                 </div>
                             </div><!--end col-->
@@ -113,7 +120,8 @@
                                     <label for="example-email-input"
                                         class="col-sm-2 col-form-label text-end">Name</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="email" id="example-email-input">
+                                        <input class="form-control" formControlName="contactPerson" type="email"
+                                            id="example-email-input">
                                     </div>
                                 </div>
                             </div><!--end col-->
@@ -122,7 +130,7 @@
                                     <label for="example-tel-input"
                                         class="col-sm-2 col-form-label text-end">Mobile</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="tel"
+                                        <input class="form-control" type="tel" formControlName="contactNumber"
                                             placeholder="enter the vendor mobile number" id="example-tel-input">
                                     </div>
                                 </div>
@@ -130,23 +138,25 @@
                             <div class="p-2">
                                 <div class="border-top"></div>
                             </div>
-                                
+
                             <div class="col-lg-6">
                                 <h2>Billing detail</h2>
-                               <div class="mb-3 row has-warning">
+                                <div class="mb-3 row has-warning">
                                     <label for="inputHorizontalWarning"
                                         class="col-sm-2 col-form-label text-end">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control form-control-warning"
-                                            id="inputHorizontalWarning" placeholder="name@example.com">
-                                        
+                                            formControlName="billingEmail" id="inputHorizontalWarning"
+                                            placeholder="name@example.com">
+
                                     </div>
                                 </div>
-                                 <div class="mb-3 row">
+                                <div class="mb-3 row">
                                     <label for="example-search-input"
                                         class="col-sm-2 col-form-label text-end">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                        <textarea class="form-control" rows="5" id="message"
+                                            formControlName="billingAddress"></textarea>
                                     </div>
                                 </div>
                             </div><!--end col-->
@@ -157,20 +167,22 @@
                                         class="col-sm-2 col-form-label text-end">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control form-control-warning"
-                                            id="inputHorizontalWarning" placeholder="name@example.com">
-                                        
+                                            formControlName="serviceEmail" id="inputHorizontalWarning"
+                                            placeholder="name@example.com">
+
                                     </div>
                                 </div>
-                                 <div class="mb-3 row">
+                                <div class="mb-3 row">
                                     <label for="example-search-input"
                                         class="col-sm-2 col-form-label text-end">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="5" id="message"></textarea>
+                                        <textarea class="form-control" formControlName="serviceAddress" rows="5"
+                                            id="message"></textarea>
                                     </div>
                                 </div>
                             </div><!--end col-->
                         </div> <!--end row-->
-                        <button class="btn btn-primary" type="submit" >Save</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->

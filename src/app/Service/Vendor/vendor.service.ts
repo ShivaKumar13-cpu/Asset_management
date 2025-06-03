@@ -9,16 +9,22 @@ import { Observable } from 'rxjs';
 export class VendorService {
 
   http = inject(HttpClient);
-    private baseUrl: string
+  private baseUrl: string
 
-  constructor() { 
-      this.baseUrl = environment.baseApiURL;
-        console.log(this.baseUrl);
+  constructor() {
+    this.baseUrl = environment.baseApiURL;
+    console.log(this.baseUrl);
   }
 
-  getAllVendor():Observable<any>{
+  getAllVendor(): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}assets/vendors/getAll`, {})
   }
 
+  getAllVendorType(): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}assets/Vendortypes/getAll`, {})
+  }
 
+  createVendor(vendorObj: any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}assets/vendors/create`, vendorObj)
+  }
 }

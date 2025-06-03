@@ -18,7 +18,7 @@ export class DepartmentsService {
   }
 
   getAllDept(): Observable<Department[]> {
-      return this.http.post<Department[]>(`${this.baseUrl}assets/departments/get-all`, {})
+    return this.http.post<Department[]>(`${this.baseUrl}assets/departments/get-all`, {})
   }
 
   createDepartment(dept: any) {
@@ -41,9 +41,12 @@ export class DepartmentsService {
     return this.http.post<any>(`${this.baseUrl}assets/business-verticals/get-all-departments`, { id: id })
   }
 
-  getDepartmentsByDivisionId(id: number):Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}assets/departments/get-by-division`, { businessDivisionId : id })
+  getDepartmentsByDivisionId(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}assets/departments/get-by-division`, { businessDivisionId: id })
   }
 
- 
+  getAllAssetInstanceBDeptId(id : number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}assets/instances/by-department`, { id: id })
+  }
+
 }

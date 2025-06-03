@@ -1,0 +1,59 @@
+<div class="padding-2">
+ 
+  <div class="row name">
+    <div class="col-6">
+      <div class="col-12">
+        <h1 style="margin: 0;">Inventry</h1>
+      </div>
+    </div>
+
+    <div class="col-6 but-name">
+      <button type="button" class="btn btn-primary prim-edit" (click)="createinventry()"> <i class="fa fa-plus"></i> Create Inventry</button>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="asset">
+        <th mat-header-cell *matHeaderCellDef> asset </th>
+        <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="assignedTo">
+        <th mat-header-cell *matHeaderCellDef> assignedTo </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+      </ng-container>
+       <ng-container matColumnDef="assignedBy">
+        <th mat-header-cell *matHeaderCellDef> assignedBy </th>
+        <td mat-cell *matCellDef="let element"> {{element.assignedBy}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="assignedDate">
+        <th mat-header-cell *matHeaderCellDef> assignedDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.assignedDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> department </th>
+        <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="sub-edit" ><i class="fa fa-pencil"></i></button>
+          <button class="sub-delete" ><i class="fa fa-trash"></i></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+      aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
+</div>

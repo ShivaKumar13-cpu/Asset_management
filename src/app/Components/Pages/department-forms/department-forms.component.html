@@ -6,16 +6,6 @@
         </mat-card-header>
 
         <mat-card-content>
-
-
-            <mat-form-field appearance="outline">
-                <mat-label>Select Business Division</mat-label>
-                <mat-select formControlName="businessDivisionId">
-                    @for (list of businessDivisionList; track list) {
-                    <mat-option [value]="list.id">{{list.name}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Department Name</mat-label>
                 <input matInput formControlName="name">
@@ -24,7 +14,6 @@
                 <mat-label>Leave a Description</mat-label>
                 <textarea matInput formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
             </mat-form-field>
-
             <mat-card-actions>
                 <button class="sub-but" type="submit" mat-raised-button color="primary">Save</button>
                 <a mat-raised-button color="accent" (click)="closepopup()">Close</a>
