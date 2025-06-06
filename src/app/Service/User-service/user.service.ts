@@ -32,7 +32,7 @@ export class UserService {
   // }
 
   getUserById(id: number): Observable<UserAttribute> {
-    return this.http.post<UserAttribute>( `${this.baseUrl}users/users/get-by-id`, { id: id } );
+    return this.http.post<UserAttribute>(`${this.baseUrl}users/users/get-by-id`, { id: id });
   }
 
 
@@ -43,7 +43,15 @@ export class UserService {
   }
 
   getUserByToken(): Observable<UserAttribute> {
-    return this.http.post<UserAttribute>( `${this.baseUrl}users/users/get-by-token`, {} );
+    return this.http.post<UserAttribute>(`${this.baseUrl}users/users/get-by-token`, {});
+  }
+
+  getUserByDeptId(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}users/users/by-department`, {
+      departmentIds: [
+        id
+      ]
+    });
   }
 
 }

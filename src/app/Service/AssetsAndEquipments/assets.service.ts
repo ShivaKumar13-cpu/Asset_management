@@ -33,32 +33,35 @@ export class AssetsService {
 
   //Equipments
   getAllEquipments(): Observable<Equipment[]> {
-      return this.http.post<Equipment[]>(`${this.baseUrl}assets/instances/getAll`, {})
-  }
-  
-  getAssetVarientsByBvId(id: number): Observable<AssetVarient>{
-    return this.http.post<AssetVarient>(`${this.baseUrl}assets/asset-variants/by-business-vertical`, {id: id})
+    return this.http.post<Equipment[]>(`${this.baseUrl}assets/instances/getAll`, {})
   }
 
-  createEqipment(equipment: any){
+  getAssetVarientsByBvId(id: number): Observable<AssetVarient> {
+    return this.http.post<AssetVarient>(`${this.baseUrl}assets/asset-variants/by-business-vertical`, { id: id })
+  }
+
+  createEqipment(equipment: any) {
     return this.http.post<Equipment>(`${this.baseUrl}assets/equipments/create`, equipment)
 
   }
-  getEquipmentById(id: number){
-    return this.http.post<Equipment>(`${this.baseUrl}assets/equipments/get-by-id`,{id: id})
+  getEquipmentById(id: number) {
+    return this.http.post<Equipment>(`${this.baseUrl}assets/equipments/get-by-id`, { id: id })
   }
 
-  updateEqipment(equipment: any){
+  updateEqipment(equipment: any) {
     return this.http.post<Equipment>(`${this.baseUrl}assets/equipments/update`, equipment)
   }
-  deleteEquipmentById(id: number){
-    console.log('enters with id',id)
-    return this.http.post<any>(`${this.baseUrl}assets/equipments/delete`,{id: id})
+  deleteEquipmentById(id: number) {
+    console.log('enters with id', id)
+    return this.http.post<any>(`${this.baseUrl}assets/equipments/delete`, { id: id })
   }
 
   //Assets
   getAllAssets(): Observable<any[]> {
-      return this.http.post<any[]>(`${this.baseUrl}assets/getAll`, {})
+    return this.http.post<any[]>(`${this.baseUrl}assets/getAllDetailedAssets`, {})
   }
 
+  getAssetsByDepartmentId(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}assets/by-department`, {departmentId: id});
+  }
 }

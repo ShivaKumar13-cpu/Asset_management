@@ -226,3 +226,21 @@
 .button-4:-webkit-details-marker {
   display: none;
 }
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 0 8px;
+}
+
+.fa-pencil, .fa-trash{
+      font-size: 0.8em;
+}
+
+::ng-deep .mat-horizontal-content-container {
+    padding: 8px !important;
+}
+.alt-table th {
+    background: #80808021;
+}
+.alt-table tbody tr td {
+    border-bottom: 1px solid gainsboro;
+}

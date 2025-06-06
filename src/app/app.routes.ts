@@ -23,6 +23,7 @@ import { VendorComponent } from './Components/Pages/vendor/vendor.component';
 import { VendorFormComponent } from './Components/Pages/Forms/vendor-form/vendor-form.component';
 import { AssetFormComponent } from './Components/Pages/Forms/asset-form/asset-form.component';
 import { InventryComponent } from './Components/Pages/inventry/inventry.component';
+import { InventryFormComponent } from './Components/Pages/Forms/inventry-form/inventry-form.component';
 
 export const routes: Routes = [
 
@@ -60,6 +61,7 @@ export const routes: Routes = [
             { path: 'vendor/Form', component: VendorFormComponent },
             { path: 'asset/Form', component: AssetFormComponent },
             { path: 'inventry', component: InventryComponent },
+            { path: 'inventry/Form', component: InventryFormComponent }
 
         ]
 

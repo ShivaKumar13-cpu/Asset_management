@@ -1,8 +1,5 @@
 mat-card {
-    margin: 2%;
     text-align: left;
-    width: 90%;
-    margin-left: 5%;
     border: 1px solid #ccc;
 }
 
@@ -10,31 +7,45 @@ mat-form-field {
     width: 25%;
 }
 
-.marg-in {
-    margin: 0 4%;
-}
+
 
 mat-raised-button {
     margin-top: 2rem;
 }
 
-.col-3 {
-    margin-bottom: 1rem !important;
+.al-row {
+    .col-3 {
+        margin-bottom: 1rem !important;
+    }
+}
+
+.per-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
 
 input[type="checkbox"]:checked+label,
 input[type="checkbox"]:checked {
-    accent-color: #ff4081; // modern browsers
+    accent-color: darken(#0d6efd, 5%); // modern browsers
 
 }
 
 /* Optional: Bold or colored label text */
 input[type="checkbox"]:checked+label {
-    color: #ff4081;
+    color: darken(#0d6efd, 5%);
     font-weight: 600;
 }
+
+
+td .primary {
+    color: darken(#0d6efd, 5%) !important;
+}
+
+
+
 
 input[type="checkbox"] {
     width: 17px;
@@ -47,8 +58,28 @@ input[type="checkbox"] {
         font-size: 1rem;
     }
 }
+
 h3 {
     font-size: 18px !important;
     letter-spacing: .009375em !important;
     margin: 0 5px 5px !important;
+}
+
+.actions-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.th-head {
+    color: black;
+    font-weight: 500;
+}
+
+.td-head {
+    color: black;
+}
+
+.th-fl {
+    display: flex;
+    gap: 0.5em;
 }

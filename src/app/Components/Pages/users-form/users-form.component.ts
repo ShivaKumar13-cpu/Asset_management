@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BusinessVerticalService } from '../../../Service/Business-Vertical/business-vertical.service';
@@ -13,6 +13,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { MatSelectChange } from '@angular/material/select';
 import { UserService } from '../../../Service/User-service/user.service';
+import Swal from 'sweetalert2';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 interface StepControls {
   [key: number]: string[];
@@ -44,8 +46,12 @@ export class UsersFormComponent implements OnInit {
   divisionUser = false;
   businessServ = inject(BusinessVerticalService)
 
+ 
+
 
   ngOnInit(): void {
+
+    console.log('this is ngOnInit');
 
     const user = sessionStorage.getItem('User');
     if (user) {
@@ -75,7 +81,10 @@ export class UsersFormComponent implements OnInit {
   BUSINESS_DIVISION = 'BUSINESS_DIVISION';
   BUSINESS_VERTICAL = 'BUSINESS_VERTICAL';
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any, private dialog: MatDialog) {
+
+    console.log('this is constructor');
+    
     // Initialize main form
     this.userForm = this._formBuilder.group({
       userLevelType: ['', Validators.required],
@@ -223,8 +232,19 @@ export class UsersFormComponent implements OnInit {
     // Call API to save
     this.userSrv.createUser(this.userForm.value).subscribe((res: any) => {
       console.log('Created Successfully', res);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'User Created',
+        text: 'The user was successfully created.',
+        confirmButtonText: 'OK'
+      });
+
     });
   }
+
+
+
 
 
   goToNextStep(stepper: MatStepper, stepIndex: number) {

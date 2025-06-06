@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<UserAttribute>([]);
-  displayedColumns = ['name', 'username', 'email', 'employeeCode', 'mobileNumber', 'isActive', 'createdDate']
+  displayedColumns = ['name', 'username', 'email', 'employeeCode', 'mobileNumber', 'isActive', 'createdDate', 'Action']
   userService = inject(UserService)
   allUsers: any[] = []; 
   activeUsers: any[] = [];
@@ -77,22 +77,23 @@ export class UsersComponent implements OnInit {
     })
 
   }
-  addUsers(){
-    // this.openPopUp(0);
-    this.router.navigateByUrl('users/form')
+  addUsers(id: number){
+      this.dialog.open(UsersFormComponent,{
+      width:'70%',
+      enterAnimationDuration:'500ms',
+      exitAnimationDuration:'500ms',
+      panelClass: 'custom-dialog-panel',
+      data:{
+        code: id
+      }
+
+    })
   }
+
+  
 
   openPopUp(id: number){
 
-    
-
-    // this.dialog.open(UsersFormComponent,{
-    //   width:'75%',
-    //   enterAnimationDuration:'500ms',
-    //   exitAnimationDuration:'500ms',
-    //   panelClass: 'custom-dialog-panel',
-
-    // })
   }
 
 }

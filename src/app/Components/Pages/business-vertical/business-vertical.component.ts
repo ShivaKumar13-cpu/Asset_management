@@ -106,11 +106,11 @@ export class BusinessVerticalComponent implements OnInit, AfterViewInit {
   addBusinessVertical() {
     this.openPopUp(0);
   }
-  addBusinessdivision(){
+  addBusinessdivision() {
     this.popUpDiv(0);
   }
 
-  onDeleteBd(id: number){
+  onDeleteBd(id: number) {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -126,7 +126,7 @@ export class BusinessVerticalComponent implements OnInit, AfterViewInit {
           text: "Your file has been deleted.",
           icon: "success"
         });
-        this.businessService.onDeleteBusinessDivision(id).subscribe((res:any) => {
+        this.businessService.onDeleteBusinessDivision(id).subscribe((res: any) => {
           this.getAllBusinessDivision();
         })
       }
@@ -165,11 +165,11 @@ export class BusinessVerticalComponent implements OnInit, AfterViewInit {
   onEditBd(id: number) {
     this.popUpDiv(id)
   }
-  
+
 
   openPopUp(id: number) {
     this.dialog.open(BusinessVerticalFormComponent, {
-      width: '50%',
+      width: '60%',
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
     }).afterClosed().subscribe(o => {
@@ -178,7 +178,7 @@ export class BusinessVerticalComponent implements OnInit, AfterViewInit {
     })
   }
 
-  popUpDiv(id: number){
+  popUpDiv(id: number) {
     this.dialog.open(BusinessDivisionComponent, {
       width: '50%',
       enterAnimationDuration: '500ms',
@@ -204,14 +204,14 @@ export class BusinessVerticalComponent implements OnInit, AfterViewInit {
   getAllBusinessDivision() {
     this.businessService.getAllBusinessDivision().subscribe((res: any) => {
       this.businessDivision = res[0];
-      if(this.businessDivision){
+      if (this.businessDivision) {
         this.create = false;
       }
     })
-    
+
   }
 
-  onAddDept(id: number){
+  onAddDept(id: number) {
     this.dialog.open(AddDepartmenytFormComponent, {
       width: '50%',
       enterAnimationDuration: '500ms',

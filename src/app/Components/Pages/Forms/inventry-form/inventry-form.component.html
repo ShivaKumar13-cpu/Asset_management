@@ -1,0 +1,112 @@
+<form action="">
+    <div class="form-group">
+        <h2 class="heading">Inventory Creation</h2>
+
+        <div class="form-group">
+            <div class="grid">
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <i class="fa fa-caret-down"></i>
+                        <select class="floatLabel" id="bv" (change)="OnchangeBv($event)">
+                            <option value="blank" selected></option>
+                            @for (item of _businessVertical; track $index) {
+                            <option [value]='item.id'>{{item.name}}</option>
+                            }
+                        </select>
+                        <label for="bv">Business Vertical</label>
+                    </div>
+                </div>
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <i class="fa fa-caret-down"></i>
+                        <select class="floatLabel" id="dept" (change)="OnChangeDept($event)">
+                            <option value="blank" selected></option>
+                            @for (item of departments; track $index) {
+                            <option [value]='item.id'>{{item.name}}</option>
+                            }
+                        </select>
+                        <label for="dept">Department</label>
+                    </div>
+                </div>
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <i class="fa fa-caret-down"></i>
+                        <select class="floatLabel" id="asset">
+                            <option value="blank" selected></option>
+                            @for (item of assetList; track $index) {
+                            <option [value]='item.id'>{{item.name}}</option>
+                            }
+                        </select>
+                        <label for="asset">Asset</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h2 class="heading">Assign User</h2>
+            <div class="grid">
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <i class="fa fa-caret-down"></i>
+                        <select class="floatLabel" id="de1" (change)="OnChangeDeptUser($event)">
+                            <option value="blank" selected></option>
+                            @for (item of _deptList; track $index) {
+                            <option [value]='item.id'>{{item.name}}</option>
+                            }
+                        </select>
+                        <label for="de1">Department</label>
+                    </div>
+                </div>
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <input type="date" id="act" class="floatLabel" name="act" value="<?php echo date('Y-m-d'); ?>">
+                        <label for="act" class="label-date">actualReturnDate</label>
+                    </div>
+                </div>
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <input type="date" id="arrive" class="floatLabel" name="arrive"
+                            value="<?php echo date('Y-m-d'); ?>">
+                        <label for="arrive" class="label-date">expectedReturnDate</label>
+                    </div>
+                </div>
+
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <i class="fa fa-caret-down"></i>
+                        <select class="floatLabel" id="user">
+                            <option value="blank" selected></option>
+                            @for (item of _userList; track $index) {
+                            <option [value]='item.id'>{{item.name}}</option>
+                            }
+                        </select>
+                        <label for="user">User</label>
+                    </div>
+                </div>
+                <div class="col-1-1 col-1-3-sm">
+                    <div class="controls">
+                        <input type="text" id="con" class="floatLabel" name="name">
+                        <label for="con">Conditional notes</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="grid">
+                <p class="info-text">Please describe your needs</p>
+
+                <div class="controls">
+                    <textarea name="comments" class="floatLabel" id="comments"></textarea>
+                    <label for="comments">Description</label>
+                </div>
+                <button type="submit" value="Submit" class="col-1-4">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

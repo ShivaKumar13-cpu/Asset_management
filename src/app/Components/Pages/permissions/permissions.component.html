@@ -5,69 +5,70 @@
   <form [formGroup]="updateRolePermision" (ngSubmit)="savePermisionUpdate()">
 
 
-    <div class="row marg-in">
-      <div class="sel-alt col-6">
-        <h3>Select business vertical</h3>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-          (change)="onChangeOfBV($event)">
-          <option selected></option>
+    <div class="row ">
+      <div class="sel-alt col-6 inventory-header per-title">
+        <h2 class="inventory-title">Permission Section</h2>
+      </div>
+      <div class="sel-alt col-3">
+        <label class="lab" for="role">Select vertical</label>
+        <select class="form-select form-select-lg mb-3" (change)="onChangeOfBV($event)">
+          <option value="" disabled selected hidden></option>
           <option *ngFor="let vertical of businessVerticalList" [value]="vertical.id">
             {{ vertical.name }}
           </option>
-
         </select>
       </div>
-      <div class="sel-alt col-6">
-         <h3>Select role</h3>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-          formControlName="roleId" (change)="roleChange($event)">
-          <option selected></option>
+
+      <div class="sel-alt col-3">
+        <label class="lab" for="role">Select Role</label>
+        <select class="form-select form-select-lg mb-3 float" formControlName="roleId" (change)="roleChange($event)"
+          id="role">
+          <option value="" disabled selected hidden></option>
           <option *ngFor="let role of roleList" [value]="role.id">
             {{ role.name }}
           </option>
-
         </select>
       </div>
-     
     </div>
-    <mat-card>
+
+
+
+    <mat-card class="mb-3">
       <mat-card-content>
         <table style="width: 100%;" formArrayName="permissions">
           <thead>
             <tr>
-              <th>Resource Name</th>
-              <th>Have View</th>
-              <th>Have Add</th>
-              <th>Have Edit</th>
-              <th>Have Delete</th>
+              <th></th>
+              <th class="th-head">Have View</th>
+              <th class="th-head">Have Add</th>
+              <th class="th-head">Have Edit</th>
+              <th class="th-head">Have Delete</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let permission of getRows.controls; let i=index" [formGroupName]="i">
-              <td>{{permission.value.resourceName}}</td>
-              <td><mat-checkbox formControlName="canView"></mat-checkbox> </td>
-              <td><mat-checkbox formControlName="canCreate"></mat-checkbox></td>
-              <td><mat-checkbox formControlName="canEdit"></mat-checkbox></td>
-              <td><mat-checkbox formControlName="canDelete"></mat-checkbox></td>
+              <td class="td-head">{{permission.value.resourceName}}</td>
+              <td><mat-checkbox color="primary" formControlName="canView"></mat-checkbox> </td>
+              <td><mat-checkbox color="primary" formControlName="canCreate"></mat-checkbox></td>
+              <td><mat-checkbox color="primary" formControlName="canEdit"></mat-checkbox></td>
+              <td><mat-checkbox color="primary" formControlName="canDelete"></mat-checkbox></td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
-      <mat-card-actions>
-        <button type="submit" mat-raised-button color="primary">Update Resourses</button>
+      <mat-card-actions class="actions-right">
+        <button type="submit" class="btn inventory-button">Update Resourses</button>
       </mat-card-actions>
     </mat-card>
   </form>
 
-  <mat-card>
-    <mat-card-content>
-      <h3>Select Menus</h3>
-      <div class="row">
-        <div *ngFor="let menu of menuData" class="col-3">
-          <label>
-            <!-- <mat-checkbox [checked]="isMenuSelected(menu.id)" (change)="toggleMenuSelection($event, menu)"></mat-checkbox> -->
-            <input type="checkbox" [checked]="isMenuSelected(menu.id)" (change)="toggleMenuSelection($event, menu)">
 
+  <mat-card class="mb-3">
+    <mat-card-content>
+      <div class="row al-row">
+        <div *ngFor="let menu of menuData" class="col-3">
+          <label class="td-head th-fl ">
+            <input type="checkbox" [checked]="isMenuSelected(menu.id)" (change)="toggleMenuSelection($event, menu)">
             {{ menu.label }}
           </label>
         </div>
@@ -75,22 +76,24 @@
 
 
     </mat-card-content>
-    <mat-card-actions>
-      <button type="submit" mat-raised-button color="primary" (click)="saveSelectedMenus()">Update Menu</button>
+    <mat-card-actions class="actions-right">
+      <button type="submit" class="btn inventory-button" (click)="saveSelectedMenus()">Update
+        Menu</button>
     </mat-card-actions>
   </mat-card>
 
   <div *ngIf="showSubMenuStep">
+
     <mat-card>
       <mat-card-content>
 
-        <h3>Select SubMenus</h3>
-        <div class="row">
-          <div *ngFor="let menu of selectedMenus" class="col-3">
 
-            <strong>{{ menu.label }}</strong>
+        <div class="row">
+          <div *ngFor="let menu of selectedMenus" class="col-3 mb-2">
+            <div class="mb-2">{{ menu.label }}</div>
+
             <div *ngFor="let sub of menu.subMenus">
-              <label>
+              <label class="td-head th-fl">
                 <input type="checkbox" [checked]="isSubMenuSelected(sub.id)"
                   (change)="toggleSubMenuSelection($event, sub, menu.id)">
 
@@ -105,8 +108,9 @@
       </mat-card-content>
 
 
-      <mat-card-actions>
-        <button class="mt-2" type="submit" mat-raised-button color="primary" (click)="saveSelectedSubMenus()">Update SubMenus</button>
+      <mat-card-actions class="actions-right">
+        <button class="mt-2 btn inventory-button" type="submit" (click)="saveSelectedSubMenus()">Update
+          SubMenus</button>
       </mat-card-actions>
     </mat-card>
   </div>

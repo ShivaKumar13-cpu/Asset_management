@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, ElementRef, inject, Inject, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -32,10 +32,41 @@ export class RoleFormCreateComponent {
   role!: FormGroup;
   selectedBvId = ''
   selectedType = ''
-
   departmentList: any;
-  constructor(private readonly dialog: MatDialog, private readonly toastr: ToastrService, private readonly ref: MatDialogRef<RoleFormCreateComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
 
+  constructor(private readonly dialog: MatDialog, private readonly toastr: ToastrService,
+    private readonly ref: MatDialogRef<RoleFormCreateComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+    private elRef: ElementRef, private renderer: Renderer2,) {
+
+  }
+
+
+  ngAfterViewInit(): void {
+    this.floatLabel('.floatLabel');
+  }
+
+  floatLabel(selector: string): void {
+    const inputs = this.elRef.nativeElement.querySelectorAll(selector);
+
+    inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
+      // Add 'active' class on focus
+      this.renderer.listen(input, 'focus', () => {
+        const label = input.nextElementSibling;
+        if (label) {
+          this.renderer.addClass(label, 'active');
+        }
+      });
+
+      // Remove 'active' class on blur if empty or 'blank'
+      this.renderer.listen(input, 'blur', () => {
+        if (!input.value || input.value === 'blank') {
+          const label = input.nextElementSibling;
+          if (label) {
+            this.renderer.removeClass(label, 'active');
+          }
+        }
+      });
+    });
   }
 
   ngOnInit(): void {
@@ -79,6 +110,8 @@ export class RoleFormCreateComponent {
     if (this.dialogData.code > 0) {
       this.title = 'Edit Role';
       this.isEdit = true;
+      console.log(this.dialogData.code);
+      
       this.roleServ.getRoleById(this.dialogData.code).subscribe((res: any) => {
         console.log(res);
 
@@ -90,8 +123,14 @@ export class RoleFormCreateComponent {
             departmentId: _data.departmentId ?? 0,
             userLevelType: _data.userLevelType ?? ''
           });
+          console.log(this.role.value);
+          
         }
+        setTimeout(() => {
+        this.floatLabel('.floatLabel');
+      },100);
       });
+      
     }
   }
 
@@ -111,6 +150,7 @@ export class RoleFormCreateComponent {
   }
 
   onChangeBv(event: any) {
+
     const selectedBvId = Number((event.target as HTMLSelectElement).value)
     console.log(selectedBvId)
     if (selectedBvId) {
@@ -123,7 +163,9 @@ export class RoleFormCreateComponent {
     } else {
       this.departmentList = [];
     }
-
+    setTimeout(() => {
+      this.floatLabel('.floatLabel');
+    }, 200);
   }
 
   onUserLevel(event: any) {
@@ -139,12 +181,11 @@ export class RoleFormCreateComponent {
             this.departmentList = item
           })
         }
-
       })
-
-
-
     }
+    setTimeout(() => {
+      this.floatLabel('.floatLabel');
+    }, 200);
 
   }
 

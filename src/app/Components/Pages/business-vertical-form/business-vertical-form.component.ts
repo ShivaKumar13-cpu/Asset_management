@@ -1,4 +1,5 @@
-import { Component, Inject, inject, Input, OnInit } from '@angular/core';
+import { ToasterService } from './../../../Service/Toaster/toaster.service';
+import { Component, ElementRef, Inject, inject, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card'
@@ -8,10 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { BusinessVerticalService } from '../../../Service/Business-Vertical/business-vertical.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { BusinessDivisionTypeAttributes } from '../../../Model/Class/BusinesVertical';
 import { DepartmentsService } from '../../../Service/Departments/departments.service';
 import { CommonModule } from '@angular/common';
 import { DepartmentFormsComponent } from '../department-forms/department-forms.component';
+
 
 @Component({
   selector: 'app-business-vertical-form',
@@ -29,14 +30,14 @@ export class BusinessVerticalFormComponent implements OnInit {
   dialogData: any;
   isEdit = false;
   id = 0;
-  businessDivList: BusinessDivisionTypeAttributes[] = []
+  businessDivList: any
   userName = ''
   businessVertical!: FormGroup;
   deptList: any[] = [];
 
 
 
-  constructor(private readonly dialog: MatDialog, private ref: MatDialogRef<BusinessVerticalFormComponent>, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2,private readonly dialog: MatDialog, private ref: MatDialogRef<BusinessVerticalFormComponent>, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   // ngOnInit(): void {
   //   this.dialogData = this.data;
@@ -97,20 +98,35 @@ export class BusinessVerticalFormComponent implements OnInit {
       this.userName = parseUser.name;
     }
 
-    // Initialize form
-    this.businessVertical = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      location: new FormControl('', [Validators.required]),
-      verticalCode: new FormControl('', [Validators.required]),
-      businessDivisionId: new FormControl(0, [Validators.required]),
-      departmentIds: new FormControl([], []),
-      createdBy: new FormControl(this.userName, [Validators.required])
+    //get Division 
+    this.businessService.getAllBusinessDivision().subscribe(item => {
+      this.businessDivList = item[0];
     });
 
+    // Initialize form
+    if (this.businessDivList) {
+      this.businessVertical = new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        location: new FormControl('', [Validators.required]),
+        verticalCode: new FormControl('', [Validators.required]),
+        businessDivisionId: new FormControl(this.businessDivList.id, [Validators.required]),
+        departmentIds: new FormControl([], []),
+        createdBy: new FormControl(this.userName, [Validators.required])
+      });
+    } else {
+       this.businessVertical = new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        location: new FormControl('', [Validators.required]),
+        verticalCode: new FormControl('', [Validators.required]),
+        departmentIds: new FormControl([], []),
+        createdBy: new FormControl(this.userName, [Validators.required])
+      });
+
+    }
+
+
     // Load divisions
-    this.businessService.getAllBusinessDivision().subscribe(item => {
-      this.businessDivList = item;
-    });
+
 
     // Load all departments
 
@@ -141,19 +157,19 @@ export class BusinessVerticalFormComponent implements OnInit {
   }
 
 
-  createDeptWhenBvAdded(){
+  createDeptWhenBvAdded() {
     this.dialog.open(DepartmentFormsComponent, {
-          width: "50%",
-          enterAnimationDuration: '300ms',
-          exitAnimationDuration: '300ms',
-          data: {
-            'code': 0
-          }
-    
-        }).afterClosed().subscribe(o => {
-          console.log("Dialog closed, refreshing data...")
-          
-        })
+      width: "50%",
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        'code': 0
+      }
+
+    }).afterClosed().subscribe(o => {
+      console.log("Dialog closed, refreshing data...")
+
+    })
   }
 
 
@@ -206,11 +222,39 @@ export class BusinessVerticalFormComponent implements OnInit {
       })
 
     } else {
-      this.deptSrv.getDepartmentsByDivisionId(event.value).subscribe(res => {
+      this.deptSrv.getAllDept().subscribe(res => {
         console.log(res);
         this.deptList = res;
       })
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.floatLabel('.floatLabel');
+  }
+  
+  floatLabel(selector: string): void {
+    const inputs = this.elRef.nativeElement.querySelectorAll(selector);
+
+    inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
+      // Add 'active' class on focus
+      this.renderer.listen(input, 'focus', () => {
+        const label = input.nextElementSibling;
+        if (label) {
+          this.renderer.addClass(label, 'active');
+        }
+      });
+
+      // Remove 'active' class on blur if empty or 'blank'
+      this.renderer.listen(input, 'blur', () => {
+        if (!input.value || input.value === 'blank') {
+          const label = input.nextElementSibling;
+          if (label) {
+            this.renderer.removeClass(label, 'active');
+          }
+        }
+      });
+    });
   }
 
 

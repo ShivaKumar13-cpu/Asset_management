@@ -1,7 +1,7 @@
 <div class="outerStepper">
     <div class="innerStepper">
         <div class="form-container">
-            <mat-horizontal-stepper labelPosition="bottom" #stepper>
+            <mat-horizontal-stepper labelPosition="bottom" #stepper linear>
                 <!-- Step 1: Organizational Information -->
                 <mat-step [stepControl]="stepForms[0]">
                     <form [formGroup]="stepForms[0]">
@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="but-ali-right">
-                                        <button class="css-exssr5" mat-button matStepperNext>Next</button>
+                                        <button class="css-exssr5" mat-button matStepperNext (click)="goToNextStep(stepper, 0)">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@
 
                                     <div class="dis-fle">
                                         <button class="css-gixbx0" mat-button matStepperPrevious>Back</button>
-                                        <button class="css-exssr5" mat-button matStepperNext>Next</button>
+                                        <button class="css-exssr5" mat-button matStepperNext (click)="goToNextStep(stepper, 1)">Next</button>
                                     </div>
                                 </div>
                             </div>

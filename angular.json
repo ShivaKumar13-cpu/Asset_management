@@ -35,14 +35,15 @@
             ],
             "styles": [
               "src/assets/ExtraCss/bootstrap.min.css",
-              
               "src/assets/ExtraCss/app.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
 
-            "scripts": ["node_modules/round-slider/dist/roundslider.min.js"]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/round-slider/dist/roundslider.min.js"]
           },
           "configurations": {
             "production": {

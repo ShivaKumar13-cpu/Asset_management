@@ -48,7 +48,7 @@ input.example-right-align::-webkit-inner-spin-button {
 .outerStepper {
     padding-top: 24px;
     padding-bottom: 24px;
-    margin-bottom: 160px;
+    // margin-bottom: 160px;
     opacity: 1;
     background: transparent;
     color: rgb(52, 71, 103);
@@ -69,7 +69,7 @@ input.example-right-align::-webkit-inner-spin-button {
         flex-basis: 74.6667%;
         -webkit-box-flex: 0;
         flex-grow: 0;
-        max-width: 66.6667%;
+        // max-width: 66.6667%;
     }
 }
 
@@ -78,7 +78,7 @@ input.example-right-align::-webkit-inner-spin-button {
         flex-basis: 74.6667%;
         -webkit-box-flex: 0;
         flex-grow: 0;
-        max-width: 66.6667%;
+        // max-width: 66.6667%;
     }
 }
 
@@ -192,7 +192,7 @@ form {
     align-items: center;
     font-size: 0.85rem;
     font-weight: 500 !important;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     line-height: 1.4;
     text-align: center;
     text-transform: uppercase;
@@ -256,7 +256,7 @@ form {
     align-items: center;
     font-size: 0.85rem;
     font-weight: 500;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     line-height: 1.4;
     text-align: center;
     text-transform: uppercase;
@@ -290,10 +290,12 @@ form {
 
 .for-in-con {
     padding: 16px;
+    border-radius: 10px;
+    border: 1px solid gainsboro;
 }
 
 .upper {
-    margin-bottom: 24px;
+    margin-bottom: 5px;
 }
 
 .title-name {
@@ -326,8 +328,9 @@ form {
 //     }
 // }
 
-.form-field1{
+.form-field1 {
     width: 100%;
+
     label {
         margin-bottom: 8px;
         margin-left: 4px;
@@ -367,6 +370,29 @@ form {
     }
 }
 
+// stepper focus is set to transparent( display : none )
+::ng-deep .mat-step-header {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit !important;
+    transition: none !important;
+}
+
+::ng-deep .mat-step-header:hover,
+::ng-deep .mat-step-header.cdk-focused,
+::ng-deep .mat-step-header.cdk-program-focused,
+::ng-deep .mat-step-header:focus {
+    background-color: inherit !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+::ng-deep .mat-step-header .mat-ripple-element {
+    display: none !important;
+}
+
+
+
 .input-container {
     position: relative;
     box-sizing: border-box;
@@ -375,7 +401,7 @@ form {
     -webkit-box-align: center;
     padding: 0.5rem 2.5rem 0.5rem 0.75rem;
     border: 0.0625rem solid rgb(210, 214, 218);
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     pointer-events: auto;
     display: grid !important;
     place-items: center !important;
@@ -390,7 +416,8 @@ form {
     appearance: none !important;
     transition: box-shadow 150ms, border-color 150ms, padding 150ms !important;
 
-    input, textarea {
+    input,
+    textarea {
         color: rgb(73, 80, 87);
         border: 0px;
         box-sizing: content-box;

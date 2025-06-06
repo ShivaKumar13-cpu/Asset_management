@@ -377,3 +377,12 @@ select:focus-visible {
 small {
     font-size: 0.8rem !important;
 }
+
+//add to the style sheet if used globally
+.floatLabel{
+    padding: 0.55rem;
+    border-radius: 3rem;
+    border: none;
+    color: #71717a;
+    background-color: #f3f3f9;
+}

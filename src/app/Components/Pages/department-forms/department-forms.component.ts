@@ -1,5 +1,4 @@
-import { empty } from 'rxjs';
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, inject, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +9,6 @@ import { BusinessVerticalService } from '../../../Service/Business-Vertical/busi
 import { DepartmentsService } from '../../../Service/Departments/departments.service';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BusinessVerticalFormComponent } from '../business-vertical-form/business-vertical-form.component';
 
 @Component({
   selector: 'app-department-forms',
@@ -22,8 +20,39 @@ import { BusinessVerticalFormComponent } from '../business-vertical-form/busines
 export class DepartmentFormsComponent implements OnInit {
   id: number = 0;
 
-  constructor(private readonly dialog: MatDialog, private readonly toastr: ToastrService, private readonly ref: MatDialogRef<DepartmentFormsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private elRef: ElementRef, private renderer: Renderer2, private readonly dialog: MatDialog,
+    private readonly toastr: ToastrService, private readonly ref: MatDialogRef<DepartmentFormsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
+  }
+
+
+  ngAfterViewInit(): void {
+    this.floatLabel('.floatLabel');
+  }
+
+  floatLabel(selector: string): void {
+    const inputs = this.elRef.nativeElement.querySelectorAll(selector);
+
+    inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
+      // Add 'active' class on focus
+      this.renderer.listen(input, 'focus', () => {
+        const label = input.nextElementSibling;
+        if (label) {
+          this.renderer.addClass(label, 'active');
+        }
+      });
+
+      // Remove 'active' class on blur if empty or 'blank'
+      this.renderer.listen(input, 'blur', () => {
+        if (!input.value || input.value === 'blank') {
+          const label = input.nextElementSibling;
+          if (label) {
+            this.renderer.removeClass(label, 'active');
+          }
+        }
+      });
+    });
   }
 
   dialogData: any;

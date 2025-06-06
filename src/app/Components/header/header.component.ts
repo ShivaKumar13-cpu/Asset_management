@@ -65,12 +65,32 @@ export class HeaderComponent implements OnInit {
 
 
 
-  onSelectionChange(event: MatSelectChange) {
-    this.divisionService.setDivision(event.value);
-    console.log('log ',event.value);
-    
+  // onSelectionChange(event: MatSelectChange) {
+  //   this.divisionService.setDivision(event.value);
+  //   console.log('log ',event.value);
+  // }
 
+  onSelectionChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    const selectedOption = this.parseNgValue(selectedValue);
+    this.divisionService.setDivision(selectedOption);
+    this.selectionChanged.emit(selectedOption);
   }
+  getSerializedOption(option: any): string {
+    return JSON.stringify(option);
+  }
+
+  parseNgValue(value: string): any {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return null;
+    }
+  }
+  trackVertical(index: number, item: any): any {
+    return item?.id || index;
+  }
+
 
 
 
